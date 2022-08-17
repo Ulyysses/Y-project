@@ -4,12 +4,12 @@ import {
   ProfileIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import css from "./index.module.css";
+import css from "./index.module.scss";
 
 const AppHeader = () => {
   return (
     <header className={css.header}>
-      <nav className={`${css.header_nav} ${css.container}`}>
+      <nav className={css.container}>
         <ul className={css.nav_ul}>
           <li>
             <a href="#" className={`${css.nav_link} pl-5 pr-5 mr-2`}>
