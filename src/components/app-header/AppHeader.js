@@ -43,7 +43,7 @@ const AppHeader = () => {
               <Logo />
             </a>
           </li>
-          <li className={css.nav_profileIcon}>
+          <li className={css.nav_profile_icon}>
             <a href="#" className={css.nav_link}>
               <ProfileIcon type="secondary" />
               <span
