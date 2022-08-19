@@ -4,18 +4,22 @@ import {
   ProfileIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import classNames from "classnames";
 import css from "./index.module.scss";
 
 const AppHeader = () => {
   return (
     <header className={css.header}>
-      <nav className={`container ${css.header_nav}`}>
+      <nav className={classNames("container", css.header_nav)}>
         <ul className={css.nav_ul}>
           <li>
-            <a href="#" className={`${css.nav_link}`}>
+            <a href="#" className={css.nav_link}>
               <BurgerIcon type="secondary" />
               <span
-                className={`${css.nav_link_text} text text_type_main-default ml-2`}
+                className={classNames(
+                  "text text_type_main-default ml-2",
+                  css.nav_link_text
+                )}
               >
                 Конструктор
               </span>
@@ -25,7 +29,10 @@ const AppHeader = () => {
             <a href="#" className={css.nav_link}>
               <ListIcon type="secondary" />
               <span
-                className={`${css.nav_link_text} text text_type_main-default ml-2`}
+                className={classNames(
+                  "text text_type_main-default ml-2",
+                  css.nav_link_text
+                )}
               >
                 Лента заказов
               </span>
@@ -37,7 +44,7 @@ const AppHeader = () => {
             </a>
           </li>
           <li className={css.nav_profileIcon}>
-            <a href="#" className={`${css.nav_link}`}>
+            <a href="#" className={css.nav_link}>
               <ProfileIcon type="secondary" />
               <span
                 className={`${css.nav_link_text} text text_type_main-default ml-2`}
