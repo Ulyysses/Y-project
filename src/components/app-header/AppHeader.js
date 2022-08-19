@@ -9,10 +9,10 @@ import css from "./index.module.scss";
 const AppHeader = () => {
   return (
     <header className={css.header}>
-      <nav className={css.container}>
+      <nav className={`container ${css.header_nav}`}>
         <ul className={css.nav_ul}>
           <li>
-            <a href="#" className={`${css.nav_link} pl-5 pr-5 mr-2`}>
+            <a href="#" className={`${css.nav_link}`}>
               <BurgerIcon type="secondary" />
               <span
                 className={`${css.nav_link_text} text text_type_main-default ml-2`}
@@ -37,7 +37,7 @@ const AppHeader = () => {
             </a>
           </li>
           <li className={css.nav_profileIcon}>
-            <a href="#" className={`${css.nav_link} mr-5`}>
+            <a href="#" className={`${css.nav_link}`}>
               <ProfileIcon type="secondary" />
               <span
                 className={`${css.nav_link_text} text text_type_main-default ml-2`}
