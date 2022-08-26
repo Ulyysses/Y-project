@@ -1,0 +1,51 @@
+@use "../../variables";
+
+.ingredients_wrapper {
+  margin-top: 20px;
+
+  @media (min-width: 768px) {
+    margin-top: 40px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 50%;
+  }
+}
+
+.main_header {
+  font-size: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+    margin-bottom: 20px;
+    justify-content: start;
+  }
+}
+
+.tabs {
+  margin-bottom: 20px;
+  box-sizing: content-box;
+
+  @media (min-width: variables.$tablet-width) {
+    display: flex;
+    margin-bottom: 40px;
+  }
+}
+
+.section_header {
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: variables.$tablet-width) {
+    justify-content: start;
+  }
+}
+
+.ul_item {
+  @media (min-width: variables.$tablet-width) {
+    display: flex;
+  }
+}

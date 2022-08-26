@@ -14,6 +14,7 @@
 .nav_ul {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   @media (min-width: variables.$tablet-width) {
     flex-direction: row;
@@ -21,7 +22,7 @@
   }
 }
 
-li:first-child {
+.li_first {
   @media (min-width: variables.$tablet-width) {
     margin-right: 8px;
   }
