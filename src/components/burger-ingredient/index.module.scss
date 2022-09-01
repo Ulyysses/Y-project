@@ -5,11 +5,11 @@
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  position: relative;
 
   @media (min-width: variables.$tablet-width) {
     margin-top: 24px;
-    margin-bottom: 40px;
-    gap: 24px;
+    max-width: 272px;
   }
 }
 
@@ -24,21 +24,8 @@
   margin-top: 4px;
 }
 
-.p_price {
-  font-size: 17px;
-}
-
 .title {
   margin-top: 4px;
   margin-bottom: 24px;
+  text-align: center;
 }
-
-// @media (min-width: variables.$tablet-width) {
-//   flex-direction: row;
-//   justify-content: space-around;
-// }
-
-// @media (min-width: variables.$desktop-width) {
-//   margin: 0 auto;
-//   display: block;
-// }

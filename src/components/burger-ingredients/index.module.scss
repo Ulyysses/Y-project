@@ -13,7 +13,7 @@
 }
 
 .main_header {
-  font-size: 30px;
+  font-size: 28px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -26,7 +26,6 @@
 }
 
 .tabs {
-  // margin-bottom: 20px;
   box-sizing: content-box;
 
   @media (min-width: variables.$tablet-width) {
@@ -43,6 +42,8 @@
 }
 
 .section {
+  margin-top: 20px;
+
   @media (min-width: variables.$tablet-width) {
     margin-top: 40px;
   }
