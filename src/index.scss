@@ -8,6 +8,15 @@ html {
   box-sizing: inherit;
 }
 
+*::-webkit-scrollbar {
+  background-color: #2f2f37;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--text-inactive-color);
+}
+
 body {
   margin: 0;
   padding: 0;

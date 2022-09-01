@@ -3,11 +3,11 @@
 .ingredients_wrapper {
   margin-top: 20px;
 
-  @media (min-width: 768px) {
+  @media (min-width: variables.$tablet-width) {
     margin-top: 40px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: variables.$desktop-width) {
     width: 50%;
   }
 }
@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: variables.$tablet-width) {
     font-size: 36px;
     margin-bottom: 20px;
     justify-content: start;
@@ -26,12 +26,25 @@
 }
 
 .tabs {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   box-sizing: content-box;
 
   @media (min-width: variables.$tablet-width) {
     display: flex;
-    margin-bottom: 40px;
+  }
+}
+
+.burger_ingredients {
+  overflow: auto;
+
+  @media (min-width: variables.$desktop-width) {
+    height: 350px;
+  }
+}
+
+.section {
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 40px;
   }
 }
 
@@ -47,5 +60,9 @@
 .ul_item {
   @media (min-width: variables.$tablet-width) {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 24px;
+    row-gap: 32px;
   }
 }
