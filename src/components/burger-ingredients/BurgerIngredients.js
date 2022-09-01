@@ -8,25 +8,23 @@ import BurgerIngredient from "../burger-ingredient";
 const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("one");
   return (
-    <main className="container">
-      <div className={css.ingredients_wrapper}>
-        <h1
-          className={classNames("text text_type_main-medium", css.main_header)}
-        >
-          Соберите бургер
-        </h1>
-        <div className={css.tabs}>
-          <Tab value="bread" active={current === "bread"} onClick={setCurrent}>
-            Булки
-          </Tab>
-          <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
-            Соусы
-          </Tab>
-          <Tab value="fill" active={current === "fill"} onClick={setCurrent}>
-            Начинки
-          </Tab>
-        </div>
-        <section className={css.section_bread}>
+    <div className={css.ingredients_wrapper}>
+      <h1 className={classNames("text text_type_main-medium", css.main_header)}>
+        Соберите бургер
+      </h1>
+      <div className={css.tabs}>
+        <Tab value="bread" active={current === "bread"} onClick={setCurrent}>
+          Булки
+        </Tab>
+        <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
+          Соусы
+        </Tab>
+        <Tab value="fill" active={current === "fill"} onClick={setCurrent}>
+          Начинки
+        </Tab>
+      </div>
+      <div className={css.burger_ingredients}>
+        <section className={css.section}>
           <h2
             className={classNames(
               "text text_type_main-medium",
@@ -36,15 +34,22 @@ const BurgerIngredients = () => {
             Булки
           </h2>
           <ul className={css.ul_item}>
-            <li>
-              <BurgerIngredient />
-            </li>
-            <li>
-              <BurgerIngredient />
-            </li>
+            {data.map((ingredient) => {
+              if (ingredient.type === "bun") {
+                return (
+                  <li key={ingredient._id}>
+                    <BurgerIngredient
+                      name={ingredient.name}
+                      image={ingredient.image}
+                      price={ingredient.price}
+                    />
+                  </li>
+                );
+              }
+            })}
           </ul>
         </section>
-        <section className={css.section_sauce}>
+        <section className={css.section}>
           <h2
             className={classNames(
               "text text_type_main-medium",
@@ -54,16 +59,48 @@ const BurgerIngredients = () => {
             Соусы
           </h2>
           <ul className={css.ul_item}>
-            <li>
-              <BurgerIngredient />
-            </li>
-            <li>
-              <BurgerIngredient />
-            </li>
+            {data.map((ingredient) => {
+              if (ingredient.type === "sauce") {
+                return (
+                  <li key={ingredient._id}>
+                    <BurgerIngredient
+                      name={ingredient.name}
+                      image={ingredient.image}
+                      price={ingredient.price}
+                    />
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        </section>
+        <section className={css.section}>
+          <h2
+            className={classNames(
+              "text text_type_main-medium",
+              css.section_header
+            )}
+          >
+            Начинки
+          </h2>
+          <ul className={css.ul_item}>
+            {data.map((ingredient) => {
+              if (ingredient.type === "main") {
+                return (
+                  <li key={ingredient._id}>
+                    <BurgerIngredient
+                      name={ingredient.name}
+                      image={ingredient.image}
+                      price={ingredient.price}
+                    />
+                  </li>
+                );
+              }
+            })}
           </ul>
         </section>
       </div>
-    </main>
+    </div>
   );
 };
 
