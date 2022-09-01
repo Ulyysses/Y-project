@@ -5,7 +5,9 @@ const App = () => {
   return (
     <>
       <AppHeader />
-      <BurgerIngredients />
+      <main className="container">
+        <BurgerIngredients />
+      </main>
     </>
   );
 };
