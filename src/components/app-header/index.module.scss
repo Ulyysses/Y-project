@@ -26,6 +26,10 @@
   @media (min-width: variables.$tablet-width) {
     margin-right: 8px;
   }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: -20px;
+  }
 }
 
 .nav_link {
