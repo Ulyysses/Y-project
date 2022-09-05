@@ -8,10 +8,7 @@ import BurgerIngredient from "../burger-ingredient";
 const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("one");
   return (
-    <div className={css.ingredients_wrapper}>
-      <h1 className={classNames("text text_type_main-medium", css.main_header)}>
-        Соберите бургер
-      </h1>
+    <section className={css.ingredients_wrapper}>
       <div className={css.tabs}>
         <Tab value="bread" active={current === "bread"} onClick={setCurrent}>
           Булки
@@ -24,7 +21,7 @@ const BurgerIngredients = () => {
         </Tab>
       </div>
       <div className={css.burger_ingredients}>
-        <section className={css.section}>
+        <div className={css.ingredients_section}>
           <h2
             className={classNames(
               "text text_type_main-medium",
@@ -48,8 +45,8 @@ const BurgerIngredients = () => {
               }
             })}
           </ul>
-        </section>
-        <section className={css.section}>
+        </div>
+        <div className={css.ingredients_section}>
           <h2
             className={classNames(
               "text text_type_main-medium",
@@ -73,8 +70,8 @@ const BurgerIngredients = () => {
               }
             })}
           </ul>
-        </section>
-        <section className={css.section}>
+        </div>
+        <div className={css.ingredients_section}>
           <h2
             className={classNames(
               "text text_type_main-medium",
@@ -98,9 +95,9 @@ const BurgerIngredients = () => {
               }
             })}
           </ul>
-        </section>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

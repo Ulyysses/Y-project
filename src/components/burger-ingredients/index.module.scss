@@ -1,27 +1,9 @@
 @use "../../variables";
 
 .ingredients_wrapper {
-  margin-top: 20px;
-
-  @media (min-width: variables.$tablet-width) {
-    margin-top: 40px;
-  }
-
   @media (min-width: variables.$desktop-width) {
     width: 600px;
-  }
-}
-
-.main_header {
-  font-size: 28px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-
-  @media (min-width: variables.$tablet-width) {
-    font-size: 36px;
-    margin-bottom: 20px;
-    justify-content: start;
+    overflow: hidden;
   }
 }
 
@@ -38,11 +20,11 @@
   overflow: auto;
 
   @media (min-width: variables.$desktop-width) {
-    height: 350px;
+    height: 100%;
   }
 }
 
-.section {
+.ingredients_section {
   margin-top: 20px;
 
   @media (min-width: variables.$tablet-width) {
