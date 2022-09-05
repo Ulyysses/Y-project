@@ -1,0 +1,52 @@
+@use "../../variables";
+
+.constrctor {
+  width: 600px;
+  display: flex;
+  justify-content: end;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list_item {
+  width: 568px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  div {
+    width: 100%;
+    box-sizing: content-box;
+  }
+}
+
+.list_item_mid {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.list_start_end {
+  margin-left: 32px;
+}
+
+.make_order {
+  margin-top: 40px;
+  display: flex;
+  justify-content: end;
+  gap: 40px;
+  margin-right: 32px;
+  margin-bottom: 45px;
+}
+
+.final_price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
