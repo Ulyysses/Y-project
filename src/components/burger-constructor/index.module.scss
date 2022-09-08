@@ -1,9 +1,17 @@
 @use "../../variables";
 
-.constrctor {
-  width: 600px;
+.constructor {
   display: flex;
-  justify-content: end;
+  margin-top: 30px;
+
+  @media (min-width: variables.$tablet-width) {
+    justify-content: center;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+    justify-content: end;
+  }
 }
 
 .list {
@@ -13,7 +21,6 @@
 }
 
 .list_item {
-  width: 568px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -21,6 +28,10 @@
   div {
     width: 100%;
     box-sizing: content-box;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 568px;
   }
 }
 
@@ -39,10 +50,13 @@
 .make_order {
   margin-top: 40px;
   display: flex;
-  justify-content: end;
   gap: 40px;
-  margin-right: 32px;
   margin-bottom: 45px;
+  justify-content: end;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 32px;
+  }
 }
 
 .final_price {

@@ -10,7 +10,7 @@ import data from "../../utils/data";
 
 const BurgerConstructor = () => {
   return (
-    <section className={css.constrctor}>
+    <section className={css.constructor}>
       <div className={css.list}>
         <div className={css.list_start_end}>
           {data.map((element, index) => {

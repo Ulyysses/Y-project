@@ -18,6 +18,12 @@
 
 .burger_ingredients {
   overflow: auto;
+  margin-top: 20px;
+  height: 300px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+  }
 
   @media (min-width: variables.$desktop-width) {
     height: 100%;
@@ -34,11 +40,7 @@
 
 .section_header {
   display: flex;
-  justify-content: center;
-
-  @media (min-width: variables.$tablet-width) {
-    justify-content: start;
-  }
+  justify-content: start;
 }
 
 .ul_item {
