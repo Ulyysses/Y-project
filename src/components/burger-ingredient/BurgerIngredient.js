@@ -4,6 +4,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import classNames from "classnames";
 import css from "./index.module.scss";
+import PropTypes from "prop-types";
 
 const BurgerIngredient = ({ name, price, image }) => {
   return (
@@ -25,6 +26,12 @@ const BurgerIngredient = ({ name, price, image }) => {
       </p>
     </div>
   );
+};
+
+BurgerIngredient.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
 };
 
 export default BurgerIngredient;
