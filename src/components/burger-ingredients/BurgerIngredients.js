@@ -7,18 +7,25 @@ import BurgerIngredient from "../burger-ingredient";
 
 const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("one");
+
   return (
     <section className={css.ingredients_wrapper}>
       <div className={css.tabs}>
-        <Tab value="bread" active={current === "bread"} onClick={setCurrent}>
-          Булки
-        </Tab>
-        <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
-          Соусы
-        </Tab>
-        <Tab value="fill" active={current === "fill"} onClick={setCurrent}>
-          Начинки
-        </Tab>
+        <a href="#bun_id">
+          <Tab value="bread" active={current === "bread"} onClick={setCurrent}>
+            Булки
+          </Tab>
+        </a>
+        <a href="#sauce_id">
+          <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
+            Соусы
+          </Tab>
+        </a>
+        <a href="#main_id">
+          <Tab value="fill" active={current === "fill"} onClick={setCurrent}>
+            Начинки
+          </Tab>
+        </a>
       </div>
       <div className={css.burger_ingredients}>
         <div className={css.ingredients_section}>
@@ -27,6 +34,7 @@ const BurgerIngredients = () => {
               "text text_type_main-medium",
               css.section_header
             )}
+            id="bun_id"
           >
             Булки
           </h2>
@@ -52,6 +60,7 @@ const BurgerIngredients = () => {
               "text text_type_main-medium",
               css.section_header
             )}
+            id="sauce_id"
           >
             Соусы
           </h2>
@@ -77,6 +86,7 @@ const BurgerIngredients = () => {
               "text text_type_main-medium",
               css.section_header
             )}
+            id="main_id"
           >
             Начинки
           </h2>

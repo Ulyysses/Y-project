@@ -9,6 +9,7 @@
 
 .tabs {
   box-sizing: content-box;
+  margin-bottom: 40px;
 
   @media (min-width: variables.$tablet-width) {
     display: flex;
@@ -26,15 +27,7 @@
   }
 
   @media (min-width: variables.$desktop-width) {
-    height: 100%;
-  }
-}
-
-.ingredients_section {
-  margin-top: 20px;
-
-  @media (min-width: variables.$tablet-width) {
-    margin-top: 40px;
+    height: calc(100% - 56px - 40px);
   }
 }
 
@@ -44,11 +37,14 @@
 }
 
 .ul_item {
+  margin-bottom: 20px;
+
   @media (min-width: variables.$tablet-width) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     column-gap: 24px;
     row-gap: 32px;
+    margin-bottom: 40px;
   }
 }
