@@ -1,0 +1,46 @@
+@use "./variables";
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*::-webkit-scrollbar {
+  background-color: var(--background-element);
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--text-inactive-color);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  display: flex;
+
+  @media (min-width: variables.$tablet-width) {
+    display: block;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

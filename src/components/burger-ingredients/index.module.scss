@@ -1,0 +1,50 @@
+@use "../../variables";
+
+.ingredients_wrapper {
+  @media (min-width: variables.$desktop-width) {
+    width: 600px;
+    overflow: hidden;
+  }
+}
+
+.tabs {
+  box-sizing: content-box;
+  margin-bottom: 40px;
+
+  @media (min-width: variables.$tablet-width) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.burger_ingredients {
+  overflow: auto;
+  margin-top: 20px;
+  height: 300px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    height: calc(100% - 56px - 40px);
+  }
+}
+
+.section_header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.list {
+  margin-bottom: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 24px;
+    row-gap: 32px;
+    margin-bottom: 40px;
+  }
+}

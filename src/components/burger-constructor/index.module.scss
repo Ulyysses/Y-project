@@ -1,0 +1,66 @@
+@use "../../variables";
+
+.constructor {
+  display: flex;
+  margin-top: 30px;
+
+  @media (min-width: variables.$tablet-width) {
+    justify-content: center;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+    justify-content: flex-end;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list_item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  div {
+    width: 100%;
+    box-sizing: content-box;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 568px;
+  }
+}
+
+.list_item_mid {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.list_start_end {
+  margin-left: 32px;
+}
+
+.make_order {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  margin-bottom: 45px;
+  justify-content: flex-end;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 32px;
+  }
+}
+
+.final_price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

@@ -1,0 +1,77 @@
+@use "../../variables";
+
+.main_header {
+  min-height: 88px;
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+}
+
+.header_nav {
+  width: 100%;
+}
+
+.nav_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: variables.$tablet-width) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.first_item {
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 8px;
+    margin-left: -20px;
+  }
+}
+
+.nav_link {
+  height: 56px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav_link_text {
+  color: var(--text-inactive-color);
+  white-space: nowrap;
+}
+
+.nav_link:hover .nav_link_text {
+  color: var(--text-primary-color);
+  transition: var(--common-transition);
+}
+
+.nav_link:hover svg path {
+  fill: var(--text-primary-color);
+  transition: var(--common-transition);
+}
+
+.nav_link:active .nav_link_text {
+  color: var(--text-primary-color);
+}
+
+.nav_link:active svg path {
+  fill: var(--text-primary-color);
+}
+
+.nav_profile_icon {
+  @media (min-width: variables.$tablet-width) {
+    margin-left: auto;
+  }
+}
+
+.nav_logo {
+  display: none;
+
+  @media (min-width: variables.$desktop-width) {
+    margin: 0 auto;
+    display: block;
+  }
+}
