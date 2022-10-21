@@ -1,6 +1,6 @@
 @use "../../variables";
 
-.header {
+.main_header {
   min-height: 88px;
   background-color: var(--background);
   display: flex;
@@ -11,7 +11,7 @@
   width: 100%;
 }
 
-.nav_ul {
+.nav_list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@
   }
 }
 
-.li_first {
+.first_item {
   @media (min-width: variables.$tablet-width) {
     margin-right: 8px;
     margin-left: -20px;
