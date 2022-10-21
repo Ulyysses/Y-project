@@ -6,13 +6,13 @@ import data from "../../utils/data";
 import BurgerIngredient from "../burger-ingredient";
 
 const BurgerIngredients = () => {
-  const [current, setCurrent] = React.useState("bread");
+  const [current, setCurrent] = React.useState("bun");
 
   return (
     <section className={css.ingredients_wrapper}>
       <div className={css.tabs}>
         <a href="#bun_id">
-          <Tab value="bread" active={current === "bread"} onClick={setCurrent}>
+          <Tab value="bun" active={current === "bun"} onClick={setCurrent}>
             Булки
           </Tab>
         </a>
@@ -22,7 +22,7 @@ const BurgerIngredients = () => {
           </Tab>
         </a>
         <a href="#main_id">
-          <Tab value="fill" active={current === "fill"} onClick={setCurrent}>
+          <Tab value="main" active={current === "main"} onClick={setCurrent}>
             Начинки
           </Tab>
         </a>
@@ -38,7 +38,7 @@ const BurgerIngredients = () => {
           >
             Булки
           </h2>
-          <ul className={css.ul_item}>
+          <ul className={css.list}>
             {data.map((ingredient) => {
               if (ingredient.type === "bun") {
                 return (
@@ -51,6 +51,7 @@ const BurgerIngredients = () => {
                   </li>
                 );
               }
+              return null;
             })}
           </ul>
         </div>
@@ -64,7 +65,7 @@ const BurgerIngredients = () => {
           >
             Соусы
           </h2>
-          <ul className={css.ul_item}>
+          <ul className={css.list}>
             {data.map((ingredient) => {
               if (ingredient.type === "sauce") {
                 return (
@@ -77,6 +78,7 @@ const BurgerIngredients = () => {
                   </li>
                 );
               }
+              return null;
             })}
           </ul>
         </div>
@@ -90,7 +92,7 @@ const BurgerIngredients = () => {
           >
             Начинки
           </h2>
-          <ul className={css.ul_item}>
+          <ul className={css.list}>
             {data.map((ingredient) => {
               if (ingredient.type === "main") {
                 return (
@@ -103,6 +105,7 @@ const BurgerIngredients = () => {
                   </li>
                 );
               }
+              return null;
             })}
           </ul>
         </div>
