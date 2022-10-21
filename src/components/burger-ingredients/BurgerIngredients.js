@@ -6,7 +6,7 @@ import data from "../../utils/data";
 import BurgerIngredient from "../burger-ingredient";
 
 const BurgerIngredients = () => {
-  const [current, setCurrent] = React.useState("one");
+  const [current, setCurrent] = React.useState("bread");
 
   return (
     <section className={css.ingredients_wrapper}>
