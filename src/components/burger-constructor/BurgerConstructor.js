@@ -4,7 +4,6 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import classNames from "classnames";
 import css from "./index.module.scss";
 import data from "../../utils/data";
 
@@ -32,7 +31,7 @@ const BurgerConstructor = () => {
           {data.map((element) => {
             if (element.type !== "bun")
               return (
-                <div key={element._id} className={classNames(css.list_item)}>
+                <div key={element._id} className={css.list_item}>
                   <DragIcon type="primary" />
                   <ConstructorElement
                     text={element.name}

@@ -1,7 +1,6 @@
 import AppHeader from "../app-header";
 import BurgerIngredients from "../burger-ingredients";
 import BurgerConstructor from "../burger-constructor/BurgerConstructor";
-import classNames from "classnames";
 
 const App = () => {
   return (

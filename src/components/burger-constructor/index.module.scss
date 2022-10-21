@@ -10,7 +10,7 @@
 
   @media (min-width: variables.$desktop-width) {
     margin-top: 0;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }
 
@@ -52,7 +52,7 @@
   display: flex;
   gap: 40px;
   margin-bottom: 45px;
-  justify-content: end;
+  justify-content: flex-end;
 
   @media (min-width: variables.$tablet-width) {
     margin-right: 32px;
