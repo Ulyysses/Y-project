@@ -4,6 +4,7 @@ import css from "./index.module.scss";
 import React from "react";
 import data from "../../utils/data";
 import BurgerIngredient from "../burger-ingredient";
+import PropTypes from "prop-types";
 
 const BurgerIngredients = () => {
   const [current, setCurrent] = React.useState("bun");
@@ -112,6 +113,18 @@ const BurgerIngredients = () => {
       </div>
     </section>
   );
+};
+
+BurgerIngredients.propTypes = {
+  ingredients: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+  loading: PropTypes.bool,
 };
 
 export default BurgerIngredients;
