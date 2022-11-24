@@ -1,18 +1,22 @@
 @use "../../variables";
 
 .ingredients_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
   @media (min-width: variables.$desktop-width) {
     width: 600px;
-    overflow: hidden;
   }
 }
 
 .tabs {
   box-sizing: content-box;
   margin-bottom: 40px;
+  display: flex;
 
   @media (min-width: variables.$tablet-width) {
-    display: flex;
     justify-content: center;
   }
 }
