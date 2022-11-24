@@ -4,15 +4,20 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useState } from "react";
+import OrderDetails from "../order-details/OrderDetails";
+import Modal from "../modal/Modal";
 import css from "./index.module.scss";
 import PropTypes from "prop-types";
 
-const BurgerConstructor = () => {
+const BurgerConstructor = ({ ingredients }) => {
+  const [modalActive, setModalActive] = useState(false);
+
   return (
     <section className={css.constructor}>
       <div className={css.list}>
         <div className={css.list_start_end}>
-          {data.map((element, index) => {
+          {ingredients.map((element, index) => {
             if (element.type === "bun" && index === 0)
               return (
                 <div key={element._id} className={css.list_item}>
@@ -25,10 +30,11 @@ const BurgerConstructor = () => {
                   />
                 </div>
               );
+            return null;
           })}
         </div>
         <div className={css.list_item_mid}>
-          {data.map((element) => {
+          {ingredients.map((element) => {
             if (element.type !== "bun")
               return (
                 <div key={element._id} className={css.list_item}>
@@ -40,11 +46,12 @@ const BurgerConstructor = () => {
                   />
                 </div>
               );
+            return null;
           })}
         </div>
         <div className={css.list_start_end}>
-          {data.map((element, index) => {
-            if (element.type === "bun" && index === data.length - 1)
+          {ingredients.map((element, index) => {
+            if (element.type === "bun" && index === 0)
               return (
                 <div key={element._id} className={css.list_item}>
                   <ConstructorElement
@@ -56,6 +63,7 @@ const BurgerConstructor = () => {
                   />
                 </div>
               );
+            return null;
           })}
         </div>
         <div className={css.make_order}>
@@ -63,11 +71,20 @@ const BurgerConstructor = () => {
             <p className="text text_type_digits-medium">610</p>
             <CurrencyIcon type="primary" />
           </div>
-          <Button type="primary" size="large">
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => {
+              setModalActive(true);
+            }}
+          >
             Оформить заказ
           </Button>
         </div>
       </div>
+      <Modal active={modalActive} setActive={setModalActive}>
+        <OrderDetails />
+      </Modal>
     </section>
   );
 };
