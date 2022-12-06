@@ -9,7 +9,7 @@ const ModalOverlay = ({ children, open, onClose }) => {
   useEffect(() => {
     const closeWithEscape = (e) => {
       if (e.code === "Escape") {
-        onClose(e);
+        onClose();
       }
     };
 
@@ -17,12 +17,10 @@ const ModalOverlay = ({ children, open, onClose }) => {
     document.addEventListener("keydown", closeWithEscape);
 
     return () => {
-      console.log("test");
-
       document.body.style.overflow = "auto";
       document.removeEventListener("keydown", closeWithEscape);
     };
-  });
+  }, [onClose]);
 
   if (open) {
     return createPortal(
