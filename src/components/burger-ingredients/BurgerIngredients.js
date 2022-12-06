@@ -1,7 +1,7 @@
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import classNames from "classnames";
 import css from "./index.module.scss";
-import React, { useState } from "react";
+import { useState } from "react";
 import BurgerIngredient from "../burger-ingredient";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
