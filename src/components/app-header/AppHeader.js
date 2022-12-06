@@ -12,7 +12,7 @@ const AppHeader = () => {
     <header className={css.main_header}>
       <nav className={classNames("container", css.header_nav)}>
         <ul className={css.nav_list}>
-          <li className={css.first_item}>
+          <li className={css.list_item}>
             <a href="http://localhost:3000/#" className={css.nav_link}>
               <BurgerIcon type="secondary" />
               <span
@@ -25,7 +25,7 @@ const AppHeader = () => {
               </span>
             </a>
           </li>
-          <li>
+          <li className={css.list_item}>
             <a href="http://localhost:3000/#" className={css.nav_link}>
               <ListIcon type="secondary" />
               <span
@@ -38,12 +38,12 @@ const AppHeader = () => {
               </span>
             </a>
           </li>
-          <li className={css.nav_logo}>
+          <li className={classNames(css.list_item, css.nav_logo)}>
             <a href="http://localhost:3000/#">
               <Logo />
             </a>
           </li>
-          <li className={css.nav_profile_icon}>
+          <li className={css.list_item}>
             <a href="http://localhost:3000/#" className={css.nav_link}>
               <ProfileIcon type="secondary" />
               <span

@@ -22,7 +22,7 @@
   }
 }
 
-.first_item {
+.list_item:first-child {
   @media (min-width: variables.$tablet-width) {
     margin-right: 8px;
     margin-left: -20px;
@@ -61,7 +61,7 @@
   fill: var(--text-primary-color);
 }
 
-.nav_profile_icon {
+.list_item:last-child {
   @media (min-width: variables.$tablet-width) {
     margin-left: auto;
   }
