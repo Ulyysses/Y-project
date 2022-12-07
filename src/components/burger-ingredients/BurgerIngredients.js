@@ -15,6 +15,11 @@ const BurgerIngredients = ({ ingredients, loading }) => {
 
   const [modalData, setModalData] = useState();
 
+  const ingredientModal = (ingredient) => {
+    setModalActive(true);
+    setModalData(ingredient);
+  };
+
   return (
     <section className={css.ingredients_wrapper}>
       {loading ? (
@@ -64,8 +69,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
                       <li
                         key={ingredient._id}
                         onClick={() => {
-                          setModalActive(true);
-                          setModalData(ingredient);
+                          ingredientModal(ingredient);
                         }}
                       >
                         <BurgerIngredient
@@ -97,8 +101,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
                       <li
                         key={ingredient._id}
                         onClick={() => {
-                          setModalActive(true);
-                          setModalData(ingredient);
+                          ingredientModal(ingredient);
                         }}
                       >
                         <BurgerIngredient
@@ -130,8 +133,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
                       <li
                         key={ingredient._id}
                         onClick={() => {
-                          setModalActive(true);
-                          setModalData(ingredient);
+                          ingredientModal(ingredient);
                         }}
                       >
                         <BurgerIngredient
