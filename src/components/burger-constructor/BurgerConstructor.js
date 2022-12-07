@@ -5,8 +5,8 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
-import OrderDetails from "../order-details/OrderDetails";
-import Modal from "../modal/Modal";
+import OrderDetails from "../order-details";
+import Modal from "../modal";
 import css from "./index.module.scss";
 import PropTypes from "prop-types";
 

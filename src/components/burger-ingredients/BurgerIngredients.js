@@ -3,9 +3,9 @@ import classNames from "classnames";
 import css from "./index.module.scss";
 import { useState } from "react";
 import BurgerIngredient from "../burger-ingredient";
-import Modal from "../modal/Modal";
-import IngredientDetails from "../ingredient-details/IngredientDetails";
-import Loading from "../loading/Loading";
+import Modal from "../modal";
+import IngredientDetails from "../ingredient-details";
+import Loading from "../loading";
 import PropTypes from "prop-types";
 
 const BurgerIngredients = ({ ingredients, loading }) => {
