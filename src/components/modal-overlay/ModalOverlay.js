@@ -3,12 +3,21 @@ import { createPortal } from "react-dom";
 import css from "./index.module.scss";
 import PropTypes from "prop-types";
 
-const ModalOverlay = ({ children, open, onClose }) => {
+const ModalOverlay = ({ children, active, onClose }) => {
   const modalRootElement = document.querySelector("#modal");
 
+  const closeOverlay = (event) => {
+    if (
+      typeof event.target.className === "string" &&
+      event.target.className.includes(css.overlay)
+    ) {
+      onClose();
+    }
+  };
+
   useEffect(() => {
-    const closeWithEscape = (e) => {
-      if (e.code === "Escape") {
+    const closeWithEscape = (event) => {
+      if (event.code === "Escape") {
         onClose();
       }
     };
@@ -22,9 +31,9 @@ const ModalOverlay = ({ children, open, onClose }) => {
     };
   }, [onClose]);
 
-  if (open) {
+  if (active) {
     return createPortal(
-      <div className={css.overlay} onClick={onClose}>
+      <div className={css.overlay} onClick={closeOverlay}>
         {children}
       </div>,
       modalRootElement
@@ -35,7 +44,7 @@ const ModalOverlay = ({ children, open, onClose }) => {
 };
 
 ModalOverlay.propTypes = {
-  open: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };

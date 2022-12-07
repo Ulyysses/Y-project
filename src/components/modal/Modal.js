@@ -8,10 +8,14 @@ const Modal = ({ active, setActive, children }) => {
     return null;
   }
 
+  const closeModal = () => {
+    setActive(false);
+  };
+
   return (
-    <ModalOverlay open={active} onClose={() => setActive(false)}>
-      <div className={css.modal_content} onClick={(e) => e.stopPropagation()}>
-        <button className={css.close_button} onClick={() => setActive(false)}>
+    <ModalOverlay active={active} onClose={closeModal}>
+      <div className={css.modal_content}>
+        <button className={css.close_button} onClick={closeModal}>
           <CloseIcon type="primary" />
         </button>
         {children}
