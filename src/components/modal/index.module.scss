@@ -1,21 +1,30 @@
 @use "../../variables";
 
 .modal_content {
-  background-color: #1c1c21;
+  background-color: var(--modal-content);
   position: relative;
 
   @media (min-width: variables.$tablet-width) {
-    border: 1px solid rgba(76 76 255 / 20%);
+    border: 1px solid var(--modal-border);
     border-radius: 40px;
   }
 }
 
 .close_button {
-  background-color: #1c1c21;
+  background-color: var(--modal-content);
   border: none;
   position: absolute;
   right: 20px;
   top: 25px;
+  cursor: pointer;
+
+  &:hover svg {
+    fill: var(--text-inactive-color);
+  }
+
+  &:active svg {
+    fill: var(--text-inactive-color);
+  }
 
   @media (min-width: variables.$desktop-width) {
     top: 60px;
