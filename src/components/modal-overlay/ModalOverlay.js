@@ -31,16 +31,16 @@ const ModalOverlay = ({ children, active, onClose }) => {
     };
   }, [onClose]);
 
-  if (active) {
-    return createPortal(
-      <div className={css.overlay} onClick={closeOverlay}>
-        {children}
-      </div>,
-      modalRootElement
-    );
+  if (!active) {
+    return null;
   }
 
-  return null;
+  return createPortal(
+    <div className={css.overlay} onClick={closeOverlay}>
+      {children}
+    </div>,
+    modalRootElement
+  );
 };
 
 ModalOverlay.propTypes = {
