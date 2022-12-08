@@ -1,7 +1,7 @@
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import classNames from "classnames";
 import css from "./index.module.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import BurgerIngredient from "../burger-ingredient";
 import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
@@ -18,6 +18,31 @@ const BurgerIngredients = ({ ingredients, loading }) => {
   const ingredientModal = (ingredient) => {
     setModalActive(true);
     setModalData(ingredient);
+  };
+
+  const buns = useRef(null);
+  const sauces = useRef(null);
+  const main = useRef(null);
+  const scrollContainer = useRef(null);
+
+  const handleScroll = () => {
+    const scrollContainerPosition =
+      scrollContainer.current.getBoundingClientRect().top;
+    const firstHeaderPosition = buns.current.getBoundingClientRect().top;
+    const secondHeaderPosition = sauces.current.getBoundingClientRect().top;
+    const thirdHeaderPosition = main.current.getBoundingClientRect().top;
+
+    const firstDiff = Math.abs(scrollContainerPosition - firstHeaderPosition);
+    const secondDiff = Math.abs(scrollContainerPosition - secondHeaderPosition);
+    const thirdDiff = Math.abs(scrollContainerPosition - thirdHeaderPosition);
+
+    if (firstDiff < secondDiff && firstDiff < thirdDiff) {
+      setCurrent("bun");
+    } else if (secondDiff < firstDiff && secondDiff < thirdDiff) {
+      setCurrent("sauce");
+    } else {
+      setCurrent("main");
+    }
   };
 
   return (
@@ -51,8 +76,12 @@ const BurgerIngredients = ({ ingredients, loading }) => {
               </Tab>
             </a>
           </div>
-          <div className={css.burger_ingredients}>
-            <div className={css.ingredients_section}>
+          <div
+            className={css.burger_ingredients}
+            ref={scrollContainer}
+            onScroll={handleScroll}
+          >
+            <div className={css.ingredients_section} ref={buns}>
               <h2
                 className={classNames(
                   "text text_type_main-medium",
@@ -84,7 +113,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
                 })}
               </ul>
             </div>
-            <div className={css.ingredients_section}>
+            <div className={css.ingredients_section} ref={sauces}>
               <h2
                 className={classNames(
                   "text text_type_main-medium",
@@ -116,7 +145,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
                 })}
               </ul>
             </div>
-            <div className={css.ingredients_section}>
+            <div className={css.ingredients_section} ref={main}>
               <h2
                 className={classNames(
                   "text text_type_main-medium",
