@@ -178,7 +178,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
               </ul>
             </div>
           </div>
-          {modalData && (
+          {modalActive && (
             <Modal active={modalActive} setActive={setModalActive}>
               <IngredientDetails data={modalData} />
             </Modal>
