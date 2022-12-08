@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   Logo,
   ListIcon,
@@ -13,7 +14,7 @@ const AppHeader = () => {
       <nav className={classNames("container", css.header_nav)}>
         <ul className={css.nav_list}>
           <li className={css.list_item}>
-            <a href="http://localhost:3000/#" className={css.nav_link}>
+            <a href="#" className={css.nav_link}>
               <BurgerIcon type="secondary" />
               <span
                 className={classNames(
@@ -26,7 +27,7 @@ const AppHeader = () => {
             </a>
           </li>
           <li className={css.list_item}>
-            <a href="http://localhost:3000/#" className={css.nav_link}>
+            <a href="#" className={css.nav_link}>
               <ListIcon type="secondary" />
               <span
                 className={classNames(
@@ -39,12 +40,12 @@ const AppHeader = () => {
             </a>
           </li>
           <li className={classNames(css.list_item, css.nav_logo)}>
-            <a href="http://localhost:3000/#">
+            <a href="#">
               <Logo />
             </a>
           </li>
           <li className={css.list_item}>
-            <a href="http://localhost:3000/#" className={css.nav_link}>
+            <a href="#" className={css.nav_link}>
               <ProfileIcon type="secondary" />
               <span
                 className={classNames(
