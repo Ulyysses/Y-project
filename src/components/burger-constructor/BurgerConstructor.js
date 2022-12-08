@@ -77,6 +77,7 @@ const BurgerConstructor = ({ ingredients }) => {
             onClick={() => {
               setModalActive(true);
             }}
+            htmlType="submit"
           >
             Оформить заказ
           </Button>

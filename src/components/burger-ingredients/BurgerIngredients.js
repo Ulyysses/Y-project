@@ -10,10 +10,8 @@ import PropTypes from "prop-types";
 
 const BurgerIngredients = ({ ingredients, loading }) => {
   const [current, setCurrent] = useState("bun");
-
   const [modalActive, setModalActive] = useState(false);
-
-  const [modalData, setModalData] = useState();
+  const [modalData, setModalData] = useState({});
 
   const ingredientModal = (ingredient) => {
     setModalActive(true);
