@@ -1,0 +1,56 @@
+@use "../../variables";
+
+.title_ingredient {
+  margin-left: 50px;
+  margin-top: 18px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: 40px;
+    margin-top: 52px;
+  }
+}
+
+.img_ingredient {
+  margin-left: 80px;
+  margin-right: 80px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: 12px;
+  }
+}
+
+.name_ingredient {
+  text-align: center;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 16px;
+  }
+}
+
+.list_info_ingredients {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 32px;
+    margin-bottom: 60px;
+  }
+}
+
+.item_info_ingredient {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.item_name_info_ingredient {
+  @media (min-width: variables.$desktop-width) {
+    margin-bottom: 10px;
+  }
+}

@@ -29,9 +29,9 @@ const BurgerIngredient = ({ name, price, image }) => {
 };
 
 BurgerIngredient.propTypes = {
-  name: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default BurgerIngredient;

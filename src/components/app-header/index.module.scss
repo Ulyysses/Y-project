@@ -22,11 +22,24 @@
   }
 }
 
-.first_item {
-  @media (min-width: variables.$tablet-width) {
-    margin-right: 8px;
-    margin-left: -20px;
+.list_item {
+  &:first-child {
+    @media (min-width: variables.$tablet-width) {
+      margin-right: 8px;
+      margin-left: -20px;
+    }
   }
+
+  &:last-child {
+    @media (min-width: variables.$tablet-width) {
+      margin-left: auto;
+    }
+  }
+}
+
+.nav_link_text {
+  color: var(--text-inactive-color);
+  white-space: nowrap;
 }
 
 .nav_link {
@@ -36,34 +49,23 @@
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-}
 
-.nav_link_text {
-  color: var(--text-inactive-color);
-  white-space: nowrap;
-}
+  &:hover .nav_link_text {
+    color: var(--text-primary-color);
+    transition: var(--common-transition);
+  }
 
-.nav_link:hover .nav_link_text {
-  color: var(--text-primary-color);
-  transition: var(--common-transition);
-}
+  &:hover svg path {
+    fill: var(--text-primary-color);
+    transition: var(--common-transition);
+  }
 
-.nav_link:hover svg path {
-  fill: var(--text-primary-color);
-  transition: var(--common-transition);
-}
+  &:active .nav_link_text {
+    color: var(--text-primary-color);
+  }
 
-.nav_link:active .nav_link_text {
-  color: var(--text-primary-color);
-}
-
-.nav_link:active svg path {
-  fill: var(--text-primary-color);
-}
-
-.nav_profile_icon {
-  @media (min-width: variables.$tablet-width) {
-    margin-left: auto;
+  &:active svg path {
+    fill: var(--text-primary-color);
   }
 }
 

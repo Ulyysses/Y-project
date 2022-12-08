@@ -25,11 +25,6 @@
   align-items: center;
   gap: 14px;
 
-  div {
-    width: 100%;
-    box-sizing: content-box;
-  }
-
   @media (min-width: variables.$tablet-width) {
     width: 568px;
   }

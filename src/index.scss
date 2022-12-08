@@ -1,4 +1,5 @@
 @use "./variables";
+@import "./colors";
 
 html {
   box-sizing: border-box;
@@ -27,11 +28,6 @@ body {
   margin: 0;
   padding: 0;
   min-width: 320px;
-  display: flex;
-
-  @media (min-width: variables.$tablet-width) {
-    display: block;
-  }
 }
 
 a {

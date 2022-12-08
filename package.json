@@ -10,7 +10,7 @@
     "@types/node": "^16.11.47",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "@ya.praktikum/react-developer-burger-ui-components": "^1.13.1",
+    "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
     "classnames": "^2.3.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -59,6 +59,6 @@
   },
   "lint-staged": {
     "*.scss": "npm run stylelint --fix",
-    "*": "prettier --write"
+    "*": "prettier --write --ignore-unknown"
   }
 }
