@@ -18,7 +18,7 @@ const BurgerConstructor = ({ ingredients }) => {
       <div className={css.list}>
         <div className={css.list_start_end}>
           {ingredients.map((element, index) => {
-            if (element.type === "bun" && index === 0)
+            if (element.type === "bun")
               return (
                 <div key={element._id} className={css.list_item}>
                   <ConstructorElement
@@ -51,7 +51,7 @@ const BurgerConstructor = ({ ingredients }) => {
         </div>
         <div className={css.list_start_end}>
           {ingredients.map((element, index) => {
-            if (element.type === "bun" && index === 0)
+            if (element.type === "bun")
               return (
                 <div key={element._id} className={css.list_item}>
                   <ConstructorElement
