@@ -2,16 +2,29 @@ import css from "./index.module.scss";
 import orderDone from "../../images/order-done.png";
 import classNames from "classnames";
 import NumberContext from "../context/number-context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Loading from "../loading";
+import Error from "../error";
+import PropTypes from "prop-types";
 
-const OrderDetail = () => {
+const OrderDetails = ({ hasError, loading }) => {
   const orderNumber = useContext(NumberContext);
-  // const [isLoading, setIsLoading] = useState(true);
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  if (loading) {
+    return (
+      <div className={css.order_fetch}>
+        <Loading style={{ height: "100%" }} />
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div className={css.order_fetch}>
+        <Error />
+      </div>
+    );
+  }
 
   return (
     <div className={css.order_details}>
@@ -41,3 +54,4 @@ OrderDetails.propTypes = {
   hasError: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
 };
+export default OrderDetails;

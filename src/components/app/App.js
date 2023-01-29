@@ -9,7 +9,7 @@ import IngredientsContext from "../context/ingredients-context/IngredientsContex
 const App = () => {
   const [ingredients, setIngredients] = useState([]);
 
-  const [error, setError] = useState(false);
+  const [hasError, hasSetError] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,19 +22,19 @@ const App = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        setError(true);
+        hasSetError(true);
         setIsLoading(false);
         console.log(error);
       });
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading style={{ height: "100vh" }} />;
   }
 
   return (
     <>
-      {error ? (
+      {hasError ? (
         <Error />
       ) : (
         <>

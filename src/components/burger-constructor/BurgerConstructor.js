@@ -16,6 +16,8 @@ const BurgerConstructor = () => {
   const [modalActive, setModalActive] = useState(false);
   const [number, setNumber] = useState(null);
   const ingredients = useContext(IngredientsContext);
+  const [hasError, hasSetError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const countPrice = (cartItems) => {
     return cartItems.reduce(
@@ -41,9 +43,12 @@ const BurgerConstructor = () => {
       .then((data) => {
         setNumber(data.order.number);
         console.log("Success:", data);
+        setIsLoading(false);
       })
       .catch((error) => {
+        hasSetError(true);
         console.error("Error:", error);
+        setIsLoading(false);
       });
   };
 
@@ -113,6 +118,7 @@ const BurgerConstructor = () => {
             onClick={() => {
               setModalActive(true);
               makeOrder();
+              setIsLoading(true);
             }}
             htmlType="submit"
           >
@@ -122,7 +128,7 @@ const BurgerConstructor = () => {
       </div>
       <Modal active={modalActive} setActive={setModalActive}>
         <NumberContext.Provider value={number}>
-          <OrderDetails />
+          <OrderDetails hasError={hasError} loading={isLoading} />
         </NumberContext.Provider>
       </Modal>
     </section>

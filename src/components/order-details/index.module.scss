@@ -4,10 +4,12 @@
   text-align: center;
   margin-top: 40px;
   margin-bottom: 40px;
+  width: 507px;
 
   @media (min-width: variables.$desktop-width) {
     margin-top: 120px;
     margin-bottom: 120px;
+    width: 707px;
   }
 }
 
@@ -22,13 +24,22 @@
 }
 
 .img_order {
-  margin: 20px 200px;
+  margin: 20px 0;
 
   @media (min-width: variables.$desktop-width) {
-    margin: 60px 300px;
+    margin: 60px 0;
   }
 }
 
 .last_order_details {
   margin-top: 10px;
+}
+
+.order_fetch {
+  width: 507px;
+  height: 100%;
+
+  @media (min-width: variables.$desktop-width) {
+    width: 707px;
+  }
 }
