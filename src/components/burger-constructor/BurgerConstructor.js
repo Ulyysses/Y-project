@@ -136,7 +136,7 @@ BurgerConstructor.propTypes = {
       price: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export default BurgerConstructor;

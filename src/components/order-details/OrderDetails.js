@@ -37,4 +37,7 @@ const OrderDetail = () => {
   );
 };
 
-export default OrderDetail;
+OrderDetails.propTypes = {
+  hasError: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
