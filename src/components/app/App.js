@@ -9,7 +9,7 @@ import Loading from "../loading";
 const App = () => {
   const [ingredients, setIngredients] = useState([]);
 
-  const [hasError, hasSetError] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,7 +22,7 @@ const App = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        hasSetError(true);
+        setHasError(true);
         setIsLoading(false);
         console.log(error);
       });

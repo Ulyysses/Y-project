@@ -16,7 +16,7 @@ const BurgerConstructor = () => {
   const [modalActive, setModalActive] = useState(false);
   const [number, setNumber] = useState(null);
   const ingredients = useContext(IngredientsContext);
-  const [hasError, hasSetError] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const countPrice = (cartItems) => {
@@ -46,7 +46,7 @@ const BurgerConstructor = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        hasSetError(true);
+        setHasError(true);
         console.error("Error:", error);
         setIsLoading(false);
       });
