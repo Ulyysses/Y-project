@@ -25,6 +25,7 @@
   overflow: auto;
   margin-top: 20px;
   height: 300px;
+  min-height: 300px;
 
   @media (min-width: variables.$desktop-width) {
     margin-top: 0;

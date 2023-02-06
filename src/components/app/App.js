@@ -35,7 +35,7 @@ const App = () => {
   return (
     <>
       {hasError ? (
-        <Error />
+        <Error style={{ height: "100vh" }} />
       ) : (
         <>
           <AppHeader />
