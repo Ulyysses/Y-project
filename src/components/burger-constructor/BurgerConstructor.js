@@ -128,7 +128,7 @@ const BurgerConstructor = () => {
       </div>
       <Modal active={modalActive} setActive={setModalActive}>
         <NumberContext.Provider value={number}>
-          <OrderDetails hasError={hasError} loading={isLoading} />
+          <OrderDetails hasError={hasError} isLoading={isLoading} />
         </NumberContext.Provider>
       </Modal>
     </section>

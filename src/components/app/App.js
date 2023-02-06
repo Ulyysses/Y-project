@@ -117,7 +117,7 @@ const App = () => {
                   },
                 ]}
               >
-                <BurgerConstructor loading={isLoading} />
+                <BurgerConstructor isLoading={isLoading} />
               </IngredientsContext.Provider>
             </div>
           </main>

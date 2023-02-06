@@ -7,13 +7,13 @@ import orderDone from "../../images/order-done.png";
 import Loading from "../loading";
 import Error from "../error";
 
-const OrderDetails = ({ hasError, loading }) => {
+const OrderDetails = ({ hasError, isLoading }) => {
   const orderNumber = useContext(NumberContext);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className={css.order_fetch}>
-        <Loading style={{ height: "100%" }} />
+        <Loading />
       </div>
     );
   }
