@@ -1,7 +1,9 @@
-import css from "./index.module.scss";
 import PropTypes from "prop-types";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import ModalOverlay from "../modal-overlay";
+
+import css from "./index.module.scss";
 
 const Modal = ({ active, setActive, children }) => {
   if (!active) {

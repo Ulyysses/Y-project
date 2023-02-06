@@ -1,11 +1,12 @@
 import classNames from "classnames";
-import css from "./index.module.scss";
 import {
   Logo,
   ListIcon,
   ProfileIcon,
   BurgerIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+
+import css from "./index.module.scss";
 
 const AppHeader = () => {
   return (

@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import classNames from "classnames";
-import css from "./index.module.scss";
 import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import NumberContext from "../context/number-context";
 import orderDone from "../../images/order-done.png";
 import Loading from "../loading";
 import Error from "../error";
+
+import css from "./index.module.scss";
 
 const OrderDetails = ({ hasError, isLoading }) => {
   const orderNumber = useContext(NumberContext);

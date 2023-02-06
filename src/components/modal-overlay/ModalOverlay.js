@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import css from "./index.module.scss";
 import PropTypes from "prop-types";
+
+import css from "./index.module.scss";
 
 const ModalOverlay = ({ children, active, onClose }) => {
   const modalRootElement = document.querySelector("#modal");

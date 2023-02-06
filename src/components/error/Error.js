@@ -1,5 +1,6 @@
-import css from "./index.module.scss";
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
+
+import css from "./index.module.scss";
 
 const Error = ({ style }) => {
   return (

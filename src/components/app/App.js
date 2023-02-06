@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import IngredientsContext from "../context/ingredients-context/IngredientsContext";
 import AppHeader from "../app-header";
 import BurgerIngredients from "../burger-ingredients";
@@ -8,9 +9,7 @@ import Loading from "../loading";
 
 const App = () => {
   const [ingredients, setIngredients] = useState([]);
-
   const [hasError, setHasError] = useState(false);
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

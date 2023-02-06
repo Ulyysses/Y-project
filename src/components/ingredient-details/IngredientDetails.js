@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import css from "./index.module.scss";
 import PropTypes from "prop-types";
+
+import css from "./index.module.scss";
 
 const IngredientDetails = ({ data }) => {
   return (

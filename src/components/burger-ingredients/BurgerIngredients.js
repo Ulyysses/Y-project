@@ -1,12 +1,14 @@
 import { useState, useRef } from "react";
 import classNames from "classnames";
-import css from "./index.module.scss";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import BurgerIngredient from "../burger-ingredient";
 import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
 import Loading from "../loading";
+
+import css from "./index.module.scss";
 
 const BurgerIngredients = ({ ingredients, loading }) => {
   const [current, setCurrent] = useState("bun");

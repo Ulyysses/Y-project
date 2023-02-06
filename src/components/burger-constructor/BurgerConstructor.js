@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import css from "./index.module.scss";
 import PropTypes from "prop-types";
 import {
   ConstructorElement,
@@ -7,17 +6,21 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import IngredientsContext from "../context/ingredients-context";
 import NumberContext from "../context/number-context";
 import OrderDetails from "../order-details";
 import Modal from "../modal";
 
+import css from "./index.module.scss";
+
 const BurgerConstructor = () => {
   const [modalActive, setModalActive] = useState(false);
   const [number, setNumber] = useState(null);
-  const ingredients = useContext(IngredientsContext);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const ingredients = useContext(IngredientsContext);
 
   const countPrice = (cartItems) => {
     return cartItems.reduce(
