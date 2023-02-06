@@ -52,6 +52,6 @@ const OrderDetails = ({ hasError, isLoading }) => {
 
 OrderDetails.propTypes = {
   hasError: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 export default OrderDetails;
