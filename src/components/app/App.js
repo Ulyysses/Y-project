@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import IngredientsContext from "../context/ingredients-context/IngredientsContext";
 import AppHeader from "../app-header";
 import BurgerIngredients from "../burger-ingredients";
 import BurgerConstructor from "../burger-constructor";
 import Error from "../error";
 import Loading from "../loading";
-import IngredientsContext from "../context/ingredients-context/IngredientsContext";
 
 const App = () => {
   const [ingredients, setIngredients] = useState([]);

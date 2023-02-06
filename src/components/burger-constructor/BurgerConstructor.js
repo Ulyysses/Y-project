@@ -1,16 +1,16 @@
+import { useState, useContext } from "react";
+import css from "./index.module.scss";
+import PropTypes from "prop-types";
 import {
   ConstructorElement,
   Button,
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState, useContext } from "react";
-import OrderDetails from "../order-details";
-import Modal from "../modal";
-import css from "./index.module.scss";
-import PropTypes from "prop-types";
 import IngredientsContext from "../context/ingredients-context";
 import NumberContext from "../context/number-context";
+import OrderDetails from "../order-details";
+import Modal from "../modal";
 
 const BurgerConstructor = () => {
   const [modalActive, setModalActive] = useState(false);

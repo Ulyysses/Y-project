@@ -1,11 +1,11 @@
-import css from "./index.module.scss";
-import orderDone from "../../images/order-done.png";
-import classNames from "classnames";
-import NumberContext from "../context/number-context";
 import { useContext } from "react";
+import classNames from "classnames";
+import css from "./index.module.scss";
+import PropTypes from "prop-types";
+import NumberContext from "../context/number-context";
+import orderDone from "../../images/order-done.png";
 import Loading from "../loading";
 import Error from "../error";
-import PropTypes from "prop-types";
 
 const OrderDetails = ({ hasError, loading }) => {
   const orderNumber = useContext(NumberContext);

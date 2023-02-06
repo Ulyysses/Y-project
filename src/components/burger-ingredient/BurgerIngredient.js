@@ -1,10 +1,10 @@
+import classNames from "classnames";
+import css from "./index.module.scss";
+import PropTypes from "prop-types";
 import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import classNames from "classnames";
-import css from "./index.module.scss";
-import PropTypes from "prop-types";
 
 const BurgerIngredient = ({ name, price, image }) => {
   return (
