@@ -1,12 +1,37 @@
-import css from "./index.module.scss";
-import orderDone from "../../images/order-done.png";
+import { useContext } from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
-const OrderDetail = () => {
+import NumberContext from "../context/number-context";
+import orderDone from "../../images/order-done.png";
+import Loading from "../loading";
+import Error from "../error";
+
+import css from "./index.module.scss";
+
+const OrderDetails = ({ hasError, isLoading }) => {
+  const orderNumber = useContext(NumberContext);
+
+  if (isLoading) {
+    return (
+      <div className={css.order_fetch}>
+        <Loading />
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div className={css.order_fetch}>
+        <Error />
+      </div>
+    );
+  }
+
   return (
     <div className={css.order_details}>
       <p className={classNames("text text_type_digits-large", css.id_order)}>
-        034458
+        {orderNumber}
       </p>
       <p className="text text_type_main-medium">идентификатор заказа</p>
       <img
@@ -27,4 +52,8 @@ const OrderDetail = () => {
   );
 };
 
-export default OrderDetail;
+OrderDetails.propTypes = {
+  hasError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+export default OrderDetails;

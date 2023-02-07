@@ -1,14 +1,16 @@
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import classNames from "classnames";
-import css from "./index.module.scss";
 import { useState, useRef } from "react";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import BurgerIngredient from "../burger-ingredient";
 import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
 import Loading from "../loading";
-import PropTypes from "prop-types";
 
-const BurgerIngredients = ({ ingredients, loading }) => {
+import css from "./index.module.scss";
+
+const BurgerIngredients = ({ ingredients, isLoading }) => {
   const [current, setCurrent] = useState("bun");
   const [modalActive, setModalActive] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -45,7 +47,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
 
   return (
     <section className={css.ingredients_wrapper}>
-      {loading ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <>
@@ -196,7 +198,7 @@ BurgerIngredients.propTypes = {
       image: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  loading: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 export default BurgerIngredients;
