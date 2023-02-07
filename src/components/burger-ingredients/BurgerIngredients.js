@@ -10,7 +10,7 @@ import Loading from "../loading";
 
 import css from "./index.module.scss";
 
-const BurgerIngredients = ({ ingredients, loading }) => {
+const BurgerIngredients = ({ ingredients, isLoading }) => {
   const [current, setCurrent] = useState("bun");
   const [modalActive, setModalActive] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -47,7 +47,7 @@ const BurgerIngredients = ({ ingredients, loading }) => {
 
   return (
     <section className={css.ingredients_wrapper}>
-      {loading ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <>
@@ -198,7 +198,7 @@ BurgerIngredients.propTypes = {
       image: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  loading: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 export default BurgerIngredients;

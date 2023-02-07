@@ -45,7 +45,7 @@ const App = () => {
             <div className="small_container">
               <BurgerIngredients
                 ingredients={ingredients}
-                loading={isLoading}
+                isLoading={isLoading}
               />
               <IngredientsContext.Provider
                 value={[
