@@ -7,17 +7,26 @@ import BurgerConstructor from "../burger-constructor";
 import Error from "../error";
 import Loading from "../loading";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setIngredients } from "../../services/ingredients";
+
 const App = () => {
-  const [ingredients, setIngredients] = useState([]);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const ingredients = useSelector((state) => state.ingredients.dataIngredients);
+  const dispatch = useDispatch();
+
+  const chosenIngredients = useSelector(
+    (state) => state.ingredients.cartIngredients
+  );
 
   useEffect(() => {
     const api = "https://norma.nomoreparties.space/api/ingredients";
     fetch(api)
       .then((res) => res.json())
       .then((result) => {
-        setIngredients(result.data);
+        dispatch(setIngredients(result.data));
         setIsLoading(false);
       })
       .catch((error) => {
@@ -26,6 +35,8 @@ const App = () => {
         console.log(error);
       });
   }, []);
+
+  console.log(ingredients);
 
   if (isLoading) {
     return <Loading style={{ height: "100vh" }} />;
@@ -43,79 +54,8 @@ const App = () => {
               Соберите бургер
             </h1>
             <div className="small_container">
-              <BurgerIngredients
-                ingredients={ingredients}
-                isLoading={isLoading}
-              />
-              <IngredientsContext.Provider
-                value={[
-                  {
-                    _id: "60d3b41abdacab0026a733cb",
-                    name: "Биокотлета из марсианской Магнолии",
-                    type: "main",
-                    proteins: 420,
-                    fat: 142,
-                    carbohydrates: 242,
-                    calories: 4242,
-                    price: 424,
-                    image: "https://code.s3.yandex.net/react/code/meat-01.png",
-                    image_mobile:
-                      "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
-                    image_large:
-                      "https://code.s3.yandex.net/react/code/meat-01-large.png",
-                    __v: 0,
-                  },
-                  {
-                    _id: "60d3b41abdacab0026a733c6",
-                    name: "Краторная булка N-200i",
-                    type: "bun",
-                    proteins: 80,
-                    fat: 24,
-                    carbohydrates: 53,
-                    calories: 420,
-                    price: 1255,
-                    image: "https://code.s3.yandex.net/react/code/bun-02.png",
-                    image_mobile:
-                      "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
-                    image_large:
-                      "https://code.s3.yandex.net/react/code/bun-02-large.png",
-                    __v: 0,
-                  },
-
-                  {
-                    _id: "60d3b41abdacab0026a733cf",
-                    name: "Соус с шипами Антарианского плоскоходца",
-                    type: "sauce",
-                    proteins: 101,
-                    fat: 99,
-                    carbohydrates: 100,
-                    calories: 100,
-                    price: 88,
-                    image: "https://code.s3.yandex.net/react/code/sauce-01.png",
-                    image_mobile:
-                      "https://code.s3.yandex.net/react/code/sauce-01-mobile.png",
-                    image_large:
-                      "https://code.s3.yandex.net/react/code/sauce-01-large.png",
-                    __v: 0,
-                  },
-                  {
-                    _id: "60d3b41abdacab0026a733d4",
-                    name: "Сыр с астероидной плесенью",
-                    type: "main",
-                    proteins: 84,
-                    fat: 48,
-                    carbohydrates: 420,
-                    calories: 3377,
-                    price: 4142,
-                    image: "https://code.s3.yandex.net/react/code/cheese.png",
-                    image_mobile:
-                      "https://code.s3.yandex.net/react/code/cheese-mobile.png",
-                    image_large:
-                      "https://code.s3.yandex.net/react/code/cheese-large.png",
-                    __v: 0,
-                  },
-                ]}
-              >
+              <BurgerIngredients isLoading={isLoading} />
+              <IngredientsContext.Provider value={chosenIngredients}>
                 <BurgerConstructor isLoading={isLoading} />
               </IngredientsContext.Provider>
             </div>

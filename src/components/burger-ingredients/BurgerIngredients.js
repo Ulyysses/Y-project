@@ -10,10 +10,13 @@ import Loading from "../loading";
 
 import css from "./index.module.scss";
 
-const BurgerIngredients = ({ ingredients, isLoading }) => {
+import { useSelector } from "react-redux";
+
+const BurgerIngredients = ({ isLoading }) => {
   const [current, setCurrent] = useState("bun");
   const [modalActive, setModalActive] = useState(false);
   const [modalData, setModalData] = useState({});
+  const ingredients = useSelector((state) => state.ingredients.dataIngredients);
 
   const ingredientModal = (ingredient) => {
     setModalActive(true);

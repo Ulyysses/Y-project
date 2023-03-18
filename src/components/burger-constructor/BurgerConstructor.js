@@ -7,7 +7,8 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import IngredientsContext from "../context/ingredients-context";
+// import IngredientsContext from "../context/ingredients-context";
+import { useSelector } from "react-redux";
 import NumberContext from "../context/number-context";
 import OrderDetails from "../order-details";
 import Modal from "../modal";
@@ -20,7 +21,7 @@ const BurgerConstructor = () => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const ingredients = useContext(IngredientsContext);
+  const ingredients = useSelector((state) => state.ingredients.cartIngredients);
 
   const countPrice = (cartItems) => {
     return cartItems.reduce(
