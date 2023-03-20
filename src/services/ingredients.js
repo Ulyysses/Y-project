@@ -76,6 +76,6 @@ export const ingredientsSlice = createSlice({
   },
 });
 
-export const { setIngredients } = ingredientsSlice.actions;
+export const { setIngredients, chooseIngredients } = ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer;
