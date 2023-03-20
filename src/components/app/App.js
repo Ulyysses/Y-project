@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import IngredientsContext from "../context/ingredients-context/IngredientsContext";
+// import IngredientsContext from "../context/ingredients-context/IngredientsContext";
 import AppHeader from "../app-header";
 import BurgerIngredients from "../burger-ingredients";
 import BurgerConstructor from "../burger-constructor";
@@ -36,8 +36,6 @@ const App = () => {
       });
   }, []);
 
-  console.log(ingredients);
-
   if (isLoading) {
     return <Loading style={{ height: "100vh" }} />;
   }
@@ -55,9 +53,7 @@ const App = () => {
             </h1>
             <div className="small_container">
               <BurgerIngredients isLoading={isLoading} />
-              <IngredientsContext.Provider value={chosenIngredients}>
-                <BurgerConstructor isLoading={isLoading} />
-              </IngredientsContext.Provider>
+              <BurgerConstructor isLoading={isLoading} />
             </div>
           </main>
         </>
