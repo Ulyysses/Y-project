@@ -208,7 +208,7 @@ BurgerIngredients.propTypes = {
       price: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
   isLoading: PropTypes.bool,
 };
 
