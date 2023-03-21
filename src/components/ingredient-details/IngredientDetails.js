@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 
 import css from "./index.module.scss";
 
-const IngredientDetails = ({ data }) => {
+import { useSelector } from "react-redux";
+
+const IngredientDetails = () => {
+  const data = useSelector((state) => state.modal.modalIngredient);
   return (
     <div className={css.ingredients_details}>
       <h3

@@ -10,17 +10,25 @@ import Loading from "../loading";
 
 import css from "./index.module.scss";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setModalIngredient, clearModal } from "../../services/modal";
 
 const BurgerIngredients = ({ isLoading }) => {
   const [current, setCurrent] = useState("bun");
-  const [modalActive, setModalActive] = useState(false);
-  const [modalData, setModalData] = useState({});
+
+  const dispatch = useDispatch();
+
   const ingredients = useSelector((state) => state.ingredients.dataIngredients);
 
+  const modalIngredient = useSelector((state) => state.modal.modalIngredient);
+
+  const modalActive = Boolean(modalIngredient);
+  const onClose = () => {
+    dispatch(clearModal());
+  };
+
   const ingredientModal = (ingredient) => {
-    setModalActive(true);
-    setModalData(ingredient);
+    dispatch(setModalIngredient(ingredient));
   };
 
   const buns = useRef(null);
@@ -182,8 +190,8 @@ const BurgerIngredients = ({ isLoading }) => {
             </div>
           </div>
           {modalActive && (
-            <Modal active={modalActive} setActive={setModalActive}>
-              <IngredientDetails data={modalData} />
+            <Modal active={modalActive} onClose={onClose}>
+              <IngredientDetails />
             </Modal>
           )}
         </>

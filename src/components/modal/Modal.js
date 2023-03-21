@@ -5,19 +5,15 @@ import ModalOverlay from "../modal-overlay";
 
 import css from "./index.module.scss";
 
-const Modal = ({ active, setActive, children }) => {
+const Modal = ({ active, onClose, children }) => {
   if (!active) {
     return null;
   }
 
-  const closeModal = () => {
-    setActive(false);
-  };
-
   return (
-    <ModalOverlay active={active} onClose={closeModal}>
+    <ModalOverlay active={active} onClose={onClose}>
       <div className={css.modal_content}>
-        <button className={css.close_button} onClick={closeModal}>
+        <button className={css.close_button} onClick={onClose}>
           <CloseIcon type="primary" />
         </button>
         {children}

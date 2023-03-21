@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import {
   ConstructorElement,
@@ -7,21 +7,28 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-// import IngredientsContext from "../context/ingredients-context";
-import { useSelector } from "react-redux";
-import NumberContext from "../context/number-context";
+import { useSelector, useDispatch } from "react-redux";
+import { clearModal, setModalOrderNumber } from "../../services/modal";
 import OrderDetails from "../order-details";
 import Modal from "../modal";
 
 import css from "./index.module.scss";
 
 const BurgerConstructor = () => {
-  const [modalActive, setModalActive] = useState(false);
-  const [number, setNumber] = useState(null);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const ingredients = useSelector((state) => state.ingredients.cartIngredients);
+
+  const dispatch = useDispatch();
+
+  const modalOrderNumber = useSelector((state) => state.modal.modalOrderNumber);
+
+  const modalActive = Boolean(modalOrderNumber);
+
+  const onClose = () => {
+    dispatch(clearModal());
+  };
 
   const countPrice = (cartItems) => {
     return cartItems.reduce(
@@ -45,7 +52,7 @@ const BurgerConstructor = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setNumber(data.order.number);
+        dispatch(setModalOrderNumber(data.order.number));
         console.log("Success:", data);
         setIsLoading(false);
       })
@@ -120,7 +127,6 @@ const BurgerConstructor = () => {
             type="primary"
             size="large"
             onClick={() => {
-              setModalActive(true);
               makeOrder();
               setIsLoading(true);
             }}
@@ -130,10 +136,8 @@ const BurgerConstructor = () => {
           </Button>
         </div>
       </div>
-      <Modal active={modalActive} setActive={setModalActive}>
-        <NumberContext.Provider value={number}>
-          <OrderDetails hasError={hasError} isLoading={isLoading} />
-        </NumberContext.Provider>
+      <Modal active={modalActive} onClose={onClose}>
+        <OrderDetails hasError={hasError} isLoading={isLoading} />
       </Modal>
     </section>
   );
