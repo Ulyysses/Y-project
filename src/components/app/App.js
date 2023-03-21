@@ -7,19 +7,14 @@ import BurgerConstructor from "../burger-constructor";
 import Error from "../error";
 import Loading from "../loading";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setIngredients } from "../../services/ingredients";
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const ingredients = useSelector((state) => state.ingredients.dataIngredients);
   const dispatch = useDispatch();
-
-  const chosenIngredients = useSelector(
-    (state) => state.ingredients.cartIngredients
-  );
 
   useEffect(() => {
     const api = "https://norma.nomoreparties.space/api/ingredients";
