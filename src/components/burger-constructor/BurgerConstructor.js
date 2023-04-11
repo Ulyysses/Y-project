@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
 import {
-  ConstructorElement,
   Button,
   CurrencyIcon,
-  DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { clearModal, setModalOrderNumber } from "../../services/modal";
 import OrderDetails from "../order-details";
 import Modal from "../modal";
+import BurgerElement from "../burger-element/BurgerElement";
+
+import { addIngredient } from "../../services/ingredients";
 
 import css from "./index.module.scss";
 

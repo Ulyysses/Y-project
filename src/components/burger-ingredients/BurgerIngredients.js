@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -8,10 +9,9 @@ import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
 import Loading from "../loading";
 
-import css from "./index.module.scss";
-
-import { useSelector, useDispatch } from "react-redux";
 import { setModalIngredient, clearModal } from "../../services/modal";
+
+import css from "./index.module.scss";
 
 const BurgerIngredients = ({ isLoading }) => {
   const [current, setCurrent] = useState("bun");

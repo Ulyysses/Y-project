@@ -1,9 +1,8 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import css from "./index.module.scss";
-
-import { useSelector } from "react-redux";
 
 const IngredientDetails = () => {
   const data = useSelector((state) => state.modal.modalIngredient);

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
 import { useSelector } from "react-redux";
+
 import orderDone from "../../images/order-done.png";
 import Loading from "../loading";
 import Error from "../error";
