@@ -1,0 +1,11 @@
+@use "../../variables";
+
+.list_item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 568px;
+  }
+}

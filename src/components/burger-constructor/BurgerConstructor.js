@@ -70,15 +70,13 @@ const BurgerConstructor = () => {
           {ingredients.map((element, index) => {
             if (element.type === "bun")
               return (
-                <div key={element._id} className={css.list_item}>
-                  <ConstructorElement
-                    type="top"
-                    isLocked={true}
-                    text={element.name}
-                    price={element.price}
-                    thumbnail={element.image}
-                  />
-                </div>
+                <BurgerElement
+                  key={element._id + index}
+                  element={element}
+                  index={index}
+                  lock={true}
+                  type={"top"}
+                />
               );
             return null;
           })}
@@ -87,14 +85,11 @@ const BurgerConstructor = () => {
           {ingredients.map((element) => {
             if (element.type !== "bun")
               return (
-                <div key={element._id} className={css.list_item}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={element.name}
-                    price={element.price}
-                    thumbnail={element.image}
-                  />
-                </div>
+                <BurgerElement
+                  key={element._id + index}
+                  element={element}
+                  index={index}
+                />
               );
             return null;
           })}
@@ -103,15 +98,13 @@ const BurgerConstructor = () => {
           {ingredients.map((element, index) => {
             if (element.type === "bun")
               return (
-                <div key={element._id} className={css.list_item}>
-                  <ConstructorElement
-                    type="bottom"
-                    isLocked={true}
-                    text={element.name}
-                    price={element.price}
-                    thumbnail={element.image}
-                  />
-                </div>
+                <BurgerElement
+                  key={element._id + index}
+                  element={element}
+                  index={index}
+                  lock={true}
+                  type={"bottom"}
+                />
               );
             return null;
           })}
