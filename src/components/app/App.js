@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-// import IngredientsContext from "../context/ingredients-context/IngredientsContext";
 import AppHeader from "../app-header";
 import BurgerIngredients from "../burger-ingredients";
 import BurgerConstructor from "../burger-constructor";
 import Error from "../error";
 import Loading from "../loading";
 
-import { useDispatch } from "react-redux";
 import { setIngredients } from "../../services/ingredients";
 
 const App = () => {
@@ -27,7 +28,6 @@ const App = () => {
       .catch((error) => {
         setHasError(true);
         setIsLoading(false);
-        console.log(error);
       });
   }, []);
 
@@ -46,10 +46,12 @@ const App = () => {
             <h1 className="text text_type_main-large mt-10 mb-5">
               Соберите бургер
             </h1>
-            <div className="small_container">
-              <BurgerIngredients isLoading={isLoading} />
-              <BurgerConstructor isLoading={isLoading} />
-            </div>
+            <DndProvider backend={HTML5Backend}>
+              <div className="small_container">
+                <BurgerIngredients isLoading={isLoading} />
+                <BurgerConstructor isLoading={isLoading} />
+              </div>
+            </DndProvider>
           </main>
         </>
       )}
