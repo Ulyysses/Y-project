@@ -4,20 +4,6 @@ const initialState = {
   dataIngredients: null,
   cartIngredients: [
     {
-      _id: "60d3b41abdacab0026a733cb",
-      name: "Биокотлета из марсианской Магнолии",
-      type: "main",
-      proteins: 420,
-      fat: 142,
-      carbohydrates: 242,
-      calories: 4242,
-      price: 424,
-      image: "https://code.s3.yandex.net/react/code/meat-01.png",
-      image_mobile: "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
-      image_large: "https://code.s3.yandex.net/react/code/meat-01-large.png",
-      __v: 0,
-    },
-    {
       _id: "60d3b41abdacab0026a733c6",
       name: "Краторная булка N-200i",
       type: "bun",
@@ -31,36 +17,8 @@ const initialState = {
       image_large: "https://code.s3.yandex.net/react/code/bun-02-large.png",
       __v: 0,
     },
-
-    {
-      _id: "60d3b41abdacab0026a733cf",
-      name: "Соус с шипами Антарианского плоскоходца",
-      type: "sauce",
-      proteins: 101,
-      fat: 99,
-      carbohydrates: 100,
-      calories: 100,
-      price: 88,
-      image: "https://code.s3.yandex.net/react/code/sauce-01.png",
-      image_mobile: "https://code.s3.yandex.net/react/code/sauce-01-mobile.png",
-      image_large: "https://code.s3.yandex.net/react/code/sauce-01-large.png",
-      __v: 0,
-    },
-    {
-      _id: "60d3b41abdacab0026a733d4",
-      name: "Сыр с астероидной плесенью",
-      type: "main",
-      proteins: 84,
-      fat: 48,
-      carbohydrates: 420,
-      calories: 3377,
-      price: 4142,
-      image: "https://code.s3.yandex.net/react/code/cheese.png",
-      image_mobile: "https://code.s3.yandex.net/react/code/cheese-mobile.png",
-      image_large: "https://code.s3.yandex.net/react/code/cheese-large.png",
-      __v: 0,
-    },
   ],
+  countIngredient: {},
 };
 
 export const ingredientsSlice = createSlice({
@@ -70,12 +28,37 @@ export const ingredientsSlice = createSlice({
     setIngredients: (state, action) => {
       state.dataIngredients = action.payload;
     },
-    chooseIngredients: (state, action) => {
-      state.cartIngredients = action.payload;
+    addIngredient: (state, action) => {
+      const newIngredient = action.payload;
+      if (newIngredient.type === "bun") {
+        state.cartIngredients = state.cartIngredients.filter(
+          (ingredient) => ingredient.type !== newIngredient.type
+        );
+      }
+      state.cartIngredients.push(newIngredient);
+    },
+    moveIngredient: (state, action) => {
+      const [indexDrag, indexDrop] = action.payload;
+      const newArr = state.cartIngredients;
+      [newArr[indexDrag], newArr[indexDrop]] = [
+        newArr[indexDrop],
+        newArr[indexDrag],
+      ];
+      state.cartIngredients = newArr;
+    },
+    removeIngredient: (state, action) => {
+      state.cartIngredients = state.cartIngredients.filter(
+        (_, index) => index !== action.payload
+      );
     },
   },
 });
 
-export const { setIngredients, chooseIngredients } = ingredientsSlice.actions;
+export const {
+  setIngredients,
+  addIngredient,
+  removeIngredient,
+  moveIngredient,
+} = ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer;
