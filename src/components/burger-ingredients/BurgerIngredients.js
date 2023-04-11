@@ -31,6 +31,16 @@ const BurgerIngredients = ({ isLoading }) => {
     dispatch(setModalIngredient(ingredient));
   };
 
+  const cartIngredients = useSelector(
+    (state) => state.ingredients.cartIngredients
+  );
+
+  const duplicates = cartIngredients.reduce((acc, cartIngredient) => {
+    const id = cartIngredient._id;
+    acc[id] = (acc[id] || 0) + 1;
+    return acc;
+  }, {});
+
   const buns = useRef(null);
   const sauces = useRef(null);
   const main = useRef(null);
@@ -116,6 +126,8 @@ const BurgerIngredients = ({ isLoading }) => {
                           name={ingredient.name}
                           image={ingredient.image}
                           price={ingredient.price}
+                          id={ingredient._id}
+                          count={duplicates[ingredient._id]}
                         />
                       </li>
                     );
@@ -148,6 +160,8 @@ const BurgerIngredients = ({ isLoading }) => {
                           name={ingredient.name}
                           image={ingredient.image}
                           price={ingredient.price}
+                          id={ingredient._id}
+                          count={duplicates[ingredient._id]}
                         />
                       </li>
                     );
@@ -180,6 +194,8 @@ const BurgerIngredients = ({ isLoading }) => {
                           name={ingredient.name}
                           image={ingredient.image}
                           price={ingredient.price}
+                          id={ingredient._id}
+                          count={duplicates[ingredient._id]}
                         />
                       </li>
                     );
