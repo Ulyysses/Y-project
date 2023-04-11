@@ -17,10 +17,24 @@ import { addIngredient } from "../../services/ingredients";
 import css from "./index.module.scss";
 
 const BurgerConstructor = () => {
+  const dataIngredients = useSelector(
+    (state) => state.ingredients.dataIngredients
+  );
+
+  const [, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item) {
+      const ingredient = dataIngredients.find((el) => el._id === item.id);
+      dispatch(addIngredient(ingredient));
+    },
+  });
+
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const ingredients = useSelector((state) => state.ingredients.cartIngredients);
+  const cartIngredients = useSelector(
+    (state) => state.ingredients.cartIngredients
+  );
 
   const dispatch = useDispatch();
 
@@ -42,7 +56,7 @@ const BurgerConstructor = () => {
 
   const makeOrder = () => {
     const api = "https://norma.nomoreparties.space/api/orders";
-    const ingredientsArray = ingredients.map((element) => element._id);
+    const ingredientsArray = cartIngredients.map((element) => element._id);
     fetch(api, {
       method: "POST",
       headers: {
@@ -66,10 +80,10 @@ const BurgerConstructor = () => {
   };
 
   return (
-    <section className={css.constructor}>
+    <section className={css.constructor} ref={dropTarget}>
       <div className={css.list}>
         <div className={css.list_start_end}>
-          {ingredients.map((element, index) => {
+          {cartIngredients.map((element, index) => {
             if (element.type === "bun")
               return (
                 <BurgerElement
@@ -84,7 +98,7 @@ const BurgerConstructor = () => {
           })}
         </div>
         <div className={css.list_item_mid}>
-          {ingredients.map((element) => {
+          {cartIngredients.map((element, index) => {
             if (element.type !== "bun")
               return (
                 <BurgerElement
@@ -97,7 +111,7 @@ const BurgerConstructor = () => {
           })}
         </div>
         <div className={css.list_start_end}>
-          {ingredients.map((element, index) => {
+          {cartIngredients.map((element, index) => {
             if (element.type === "bun")
               return (
                 <BurgerElement
@@ -114,7 +128,7 @@ const BurgerConstructor = () => {
         <div className={css.make_order}>
           <div className={css.final_price}>
             <p className="text text_type_digits-medium">
-              {countPrice(ingredients)}
+              {countPrice(cartIngredients)}
             </p>
             <CurrencyIcon type="primary" />
           </div>
