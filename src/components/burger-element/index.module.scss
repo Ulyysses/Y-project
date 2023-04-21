@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  cursor: grabbing;
 
   @media (min-width: variables.$tablet-width) {
     width: 568px;
