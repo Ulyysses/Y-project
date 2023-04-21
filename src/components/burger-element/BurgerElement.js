@@ -31,6 +31,10 @@ const BurgerElement = ({ element, index, lock, type }) => {
     },
   });
 
+  const deleteIngredient = () => {
+    dispatch(removeIngredient(index));
+  };
+
   if (!type) {
     dropOrder(ref);
     dragOrder(ref);
@@ -45,9 +49,7 @@ const BurgerElement = ({ element, index, lock, type }) => {
         text={element.name}
         price={element.price}
         thumbnail={element.image}
-        handleClose={() => {
-          dispatch(removeIngredient(index));
-        }}
+        handleClose={deleteIngredient}
       />
     </div>
   );
