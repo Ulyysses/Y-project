@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
+import PropTypes from "prop-types";
 import {
   ConstructorElement,
   DragIcon,
@@ -24,7 +25,6 @@ const BurgerElement = ({ element, index, lock, type }) => {
   const [, dropOrder] = useDrop({
     accept: "ingredientOrder",
     drop(item) {
-      console.log(item.index);
       const indexDrag = item.index;
       const indexDrop = index;
       dispatch(moveIngredient([indexDrag, indexDrop]));
@@ -53,6 +53,12 @@ const BurgerElement = ({ element, index, lock, type }) => {
       />
     </div>
   );
+};
+
+BurgerElement.propTypes = {
+  type: PropTypes.string,
+  isLocked: PropTypes.bool,
+  image: PropTypes.string,
 };
 
 export default BurgerElement;
