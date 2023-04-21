@@ -52,11 +52,8 @@ const BurgerConstructor = () => {
 
   const handleClickMakeOrder = () => {
     if (cartIngredients.length > 1) {
-      setHasError(false);
-      setIsLoading(true);
       makeOrder();
     }
-    return null;
   };
 
   const countPrice = (cartItems) => {
@@ -79,6 +76,8 @@ const BurgerConstructor = () => {
   const makeOrder = () => {
     const api = "https://norma.nomoreparties.space/api/orders";
     const ingredientsId = cartIngredients.map((element) => element._id);
+    setHasError(false);
+    setIsLoading(true);
     fetch(api, {
       method: "POST",
       headers: {
@@ -167,7 +166,7 @@ const BurgerConstructor = () => {
             size="large"
             onClick={handleClickMakeOrder}
             htmlType="submit"
-            disabled={makeDisabled}
+            disabled={isSubmitDisabled}
           >
             Оформить заказ
           </Button>
