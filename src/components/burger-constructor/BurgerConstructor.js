@@ -67,7 +67,7 @@ const BurgerConstructor = () => {
     );
   };
 
-  const makeDisabled = useMemo(
+  const isSubmitDisabled = useMemo(
     () =>
       !(
         cartIngredients.length > 1 &&
