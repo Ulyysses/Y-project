@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import { applyMiddleware } from 'redux';
 import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
 import { rootReducer } from "./services/reducers/rootReducer";
 import { Provider } from "react-redux";
