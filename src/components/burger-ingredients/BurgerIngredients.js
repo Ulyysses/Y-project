@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -35,11 +35,15 @@ const BurgerIngredients = ({ isLoading }) => {
     (state) => state.ingredients.cartIngredients
   );
 
-  const duplicates = cartIngredients.reduce((acc, cartIngredient) => {
-    const id = cartIngredient._id;
-    acc[id] = (acc[id] || 0) + 1;
-    return acc;
-  }, {});
+  const duplicates = useMemo(
+    () =>
+      cartIngredients.reduce((acc, cartIngredient) => {
+        const id = cartIngredient._id;
+        acc[id] = (acc[id] || 0) + 1;
+        return acc;
+      }, {}),
+    [cartIngredients]
+  );
 
   const buns = useRef(null);
   const sauces = useRef(null);
