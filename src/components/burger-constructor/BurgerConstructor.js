@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -50,6 +50,15 @@ const BurgerConstructor = () => {
     dispatch(clearModal());
   };
 
+  const handleClickMakeOrder = () => {
+    if (cartIngredients.length > 1) {
+      setHasError(false);
+      setIsLoading(true);
+      makeOrder();
+    }
+    return null;
+  };
+
   const countPrice = (cartItems) => {
     return cartItems.reduce(
       (acc, current) =>
@@ -57,6 +66,15 @@ const BurgerConstructor = () => {
       0
     );
   };
+
+  const makeDisabled = useMemo(
+    () =>
+      !(
+        cartIngredients.length > 1 &&
+        cartIngredients.find((el) => el.type === "bun")
+      ),
+    [cartIngredients]
+  );
 
   const makeOrder = () => {
     const api = "https://norma.nomoreparties.space/api/orders";
@@ -147,11 +165,9 @@ const BurgerConstructor = () => {
           <Button
             type="primary"
             size="large"
-            onClick={() => {
-              makeOrder();
-              setIsLoading(true);
-            }}
+            onClick={handleClickMakeOrder}
             htmlType="submit"
+            disabled={makeDisabled}
           >
             Оформить заказ
           </Button>
