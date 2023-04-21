@@ -6,6 +6,11 @@
   align-items: center;
   margin-top: 10px;
   position: relative;
+  cursor: pointer;
+
+  &:active {
+    cursor: grabbing;
+  }
 
   @media (min-width: variables.$tablet-width) {
     margin-top: 24px;

@@ -1,0 +1,17 @@
+@use "../../variables";
+
+.list_item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: grabbing;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 568px;
+  }
+}
+
+.drop_hover {
+  outline: 1px solid var(--colors-interface-success);
+  border-radius: 40px;
+}

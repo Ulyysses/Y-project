@@ -1,8 +1,7 @@
-import { useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
 
-import NumberContext from "../context/number-context";
 import orderDone from "../../images/order-done.png";
 import Loading from "../loading";
 import Error from "../error";
@@ -10,7 +9,7 @@ import Error from "../error";
 import css from "./index.module.scss";
 
 const OrderDetails = ({ hasError, isLoading }) => {
-  const orderNumber = useContext(NumberContext);
+  const orderNumber = useSelector((state) => state.modal.modalOrderNumber);
 
   if (isLoading) {
     return (

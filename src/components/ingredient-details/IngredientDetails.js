@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import css from "./index.module.scss";
 
-const IngredientDetails = ({ data }) => {
+const IngredientDetails = () => {
+  const data = useSelector((state) => state.modal.modalIngredient);
   return (
     <div className={css.ingredients_details}>
       <h3
@@ -111,7 +113,7 @@ IngredientDetails.propTypes = {
     proteins: PropTypes.number.isRequired,
     fat: PropTypes.number.isRequired,
     carbohydrates: PropTypes.number.isRequired,
-  }).isRequired,
+  }),
 };
 
 export default IngredientDetails;

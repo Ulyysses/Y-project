@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -8,17 +9,43 @@ import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
 import Loading from "../loading";
 
+import { setModalIngredient, clearModal } from "../../services/modal";
+
 import css from "./index.module.scss";
 
-const BurgerIngredients = ({ ingredients, isLoading }) => {
+const BurgerIngredients = ({ isLoading }) => {
   const [current, setCurrent] = useState("bun");
-  const [modalActive, setModalActive] = useState(false);
-  const [modalData, setModalData] = useState({});
+
+  const dispatch = useDispatch();
+
+  const dataIngredients = useSelector(
+    (state) => state.ingredients.dataIngredients
+  );
+
+  const modalIngredient = useSelector((state) => state.modal.modalIngredient);
+
+  const modalActive = Boolean(modalIngredient);
+  const onClose = () => {
+    dispatch(clearModal());
+  };
 
   const ingredientModal = (ingredient) => {
-    setModalActive(true);
-    setModalData(ingredient);
+    dispatch(setModalIngredient(ingredient));
   };
+
+  const cartIngredients = useSelector(
+    (state) => state.ingredients.cartIngredients
+  );
+
+  const duplicates = useMemo(
+    () =>
+      cartIngredients.reduce((acc, cartIngredient) => {
+        const id = cartIngredient._id;
+        acc[id] = (acc[id] || 0) + 1;
+        return acc;
+      }, {}),
+    [cartIngredients]
+  );
 
   const buns = useRef(null);
   const sauces = useRef(null);
@@ -92,7 +119,7 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
                 Булки
               </h2>
               <ul className={css.list}>
-                {ingredients.map((ingredient) => {
+                {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "bun") {
                     return (
                       <li
@@ -105,6 +132,8 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
                           name={ingredient.name}
                           image={ingredient.image}
                           price={ingredient.price}
+                          id={ingredient._id}
+                          count={duplicates[ingredient._id]}
                         />
                       </li>
                     );
@@ -124,7 +153,7 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
                 Соусы
               </h2>
               <ul className={css.list}>
-                {ingredients.map((ingredient) => {
+                {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "sauce") {
                     return (
                       <li
@@ -137,6 +166,8 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
                           name={ingredient.name}
                           image={ingredient.image}
                           price={ingredient.price}
+                          id={ingredient._id}
+                          count={duplicates[ingredient._id]}
                         />
                       </li>
                     );
@@ -156,7 +187,7 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
                 Начинки
               </h2>
               <ul className={css.list}>
-                {ingredients.map((ingredient) => {
+                {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "main") {
                     return (
                       <li
@@ -169,6 +200,8 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
                           name={ingredient.name}
                           image={ingredient.image}
                           price={ingredient.price}
+                          id={ingredient._id}
+                          count={duplicates[ingredient._id]}
                         />
                       </li>
                     );
@@ -179,8 +212,8 @@ const BurgerIngredients = ({ ingredients, isLoading }) => {
             </div>
           </div>
           {modalActive && (
-            <Modal active={modalActive} setActive={setModalActive}>
-              <IngredientDetails data={modalData} />
+            <Modal active={modalActive} onClose={onClose}>
+              <IngredientDetails />
             </Modal>
           )}
         </>
@@ -197,7 +230,7 @@ BurgerIngredients.propTypes = {
       price: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
   isLoading: PropTypes.bool,
 };
 

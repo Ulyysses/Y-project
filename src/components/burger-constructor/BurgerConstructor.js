@@ -1,26 +1,60 @@
-import { useState, useContext } from "react";
+import { useState, useMemo } from "react";
+import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import {
-  ConstructorElement,
   Button,
   CurrencyIcon,
-  DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import IngredientsContext from "../context/ingredients-context";
-import NumberContext from "../context/number-context";
+import { useSelector, useDispatch } from "react-redux";
+import { clearModal, setModalOrderNumber } from "../../services/modal";
 import OrderDetails from "../order-details";
 import Modal from "../modal";
+import BurgerElement from "../burger-element/BurgerElement";
+
+import { addIngredient } from "../../services/ingredients";
 
 import css from "./index.module.scss";
 
 const BurgerConstructor = () => {
-  const [modalActive, setModalActive] = useState(false);
-  const [number, setNumber] = useState(null);
+  const dataIngredients = useSelector(
+    (state) => state.ingredients.dataIngredients
+  );
+
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item) {
+      const ingredient = dataIngredients.find((el) => el._id === item.id);
+      dispatch(addIngredient(ingredient));
+    },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
+  });
+
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const ingredients = useContext(IngredientsContext);
+  const cartIngredients = useSelector(
+    (state) => state.ingredients.cartIngredients
+  );
+
+  const dispatch = useDispatch();
+
+  const modalOrderNumber = useSelector((state) => state.modal.modalOrderNumber);
+
+  const modalActive = Boolean(modalOrderNumber);
+
+  const onClose = () => {
+    dispatch(clearModal());
+  };
+
+  const handleClickMakeOrder = () => {
+    if (cartIngredients.length > 1) {
+      makeOrder();
+    }
+  };
 
   const countPrice = (cartItems) => {
     return cartItems.reduce(
@@ -30,21 +64,37 @@ const BurgerConstructor = () => {
     );
   };
 
+  const isSubmitDisabled = useMemo(
+    () =>
+      !(
+        cartIngredients.length > 1 &&
+        cartIngredients.find((el) => el.type === "bun")
+      ),
+    [cartIngredients]
+  );
+
   const makeOrder = () => {
     const api = "https://norma.nomoreparties.space/api/orders";
-    const ingredientsArray = ingredients.map((element) => element._id);
+    const ingredientsId = cartIngredients.map((element) => element._id);
+    setHasError(false);
+    setIsLoading(true);
     fetch(api, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ingredients: ingredientsArray,
+        ingredients: ingredientsId,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("error HTTP " + response.status);
+        }
+        return response.json();
+      })
       .then((data) => {
-        setNumber(data.order.number);
+        dispatch(setModalOrderNumber(data.order.number));
         console.log("Success:", data);
         setIsLoading(false);
       })
@@ -56,54 +106,50 @@ const BurgerConstructor = () => {
   };
 
   return (
-    <section className={css.constructor}>
+    <section
+      className={classNames(css.constructor, isHover && css.drop_hover)}
+      ref={dropTarget}
+    >
       <div className={css.list}>
         <div className={css.list_start_end}>
-          {ingredients.map((element, index) => {
+          {cartIngredients.map((element, index) => {
             if (element.type === "bun")
               return (
-                <div key={element._id} className={css.list_item}>
-                  <ConstructorElement
-                    type="top"
-                    isLocked={true}
-                    text={element.name}
-                    price={element.price}
-                    thumbnail={element.image}
-                  />
-                </div>
+                <BurgerElement
+                  key={element._id + index}
+                  element={element}
+                  index={index}
+                  lock={true}
+                  type={"top"}
+                />
               );
             return null;
           })}
         </div>
         <div className={css.list_item_mid}>
-          {ingredients.map((element) => {
+          {cartIngredients.map((element, index) => {
             if (element.type !== "bun")
               return (
-                <div key={element._id} className={css.list_item}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={element.name}
-                    price={element.price}
-                    thumbnail={element.image}
-                  />
-                </div>
+                <BurgerElement
+                  key={element._id + index}
+                  element={element}
+                  index={index}
+                />
               );
             return null;
           })}
         </div>
         <div className={css.list_start_end}>
-          {ingredients.map((element, index) => {
+          {cartIngredients.map((element, index) => {
             if (element.type === "bun")
               return (
-                <div key={element._id} className={css.list_item}>
-                  <ConstructorElement
-                    type="bottom"
-                    isLocked={true}
-                    text={element.name}
-                    price={element.price}
-                    thumbnail={element.image}
-                  />
-                </div>
+                <BurgerElement
+                  key={element._id + index}
+                  element={element}
+                  index={index}
+                  lock={true}
+                  type={"bottom"}
+                />
               );
             return null;
           })}
@@ -111,28 +157,23 @@ const BurgerConstructor = () => {
         <div className={css.make_order}>
           <div className={css.final_price}>
             <p className="text text_type_digits-medium">
-              {countPrice(ingredients)}
+              {countPrice(cartIngredients)}
             </p>
             <CurrencyIcon type="primary" />
           </div>
           <Button
             type="primary"
             size="large"
-            onClick={() => {
-              setModalActive(true);
-              makeOrder();
-              setIsLoading(true);
-            }}
+            onClick={handleClickMakeOrder}
             htmlType="submit"
+            disabled={isSubmitDisabled}
           >
             Оформить заказ
           </Button>
         </div>
       </div>
-      <Modal active={modalActive} setActive={setModalActive}>
-        <NumberContext.Provider value={number}>
-          <OrderDetails hasError={hasError} isLoading={isLoading} />
-        </NumberContext.Provider>
+      <Modal active={modalActive} onClose={onClose}>
+        <OrderDetails hasError={hasError} isLoading={isLoading} />
       </Modal>
     </section>
   );
