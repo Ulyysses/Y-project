@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import {
   ConstructorElement,
   DragIcon,
@@ -22,13 +23,16 @@ const BurgerElement = ({ element, index, lock, type }) => {
     item: { index },
   });
 
-  const [, dropOrder] = useDrop({
+  const [{ isHover }, dropOrder] = useDrop({
     accept: "ingredientOrder",
     drop(item) {
       const indexDrag = item.index;
       const indexDrop = index;
       dispatch(moveIngredient([indexDrag, indexDrop]));
     },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
   });
 
   const deleteIngredient = () => {
@@ -41,7 +45,11 @@ const BurgerElement = ({ element, index, lock, type }) => {
   }
 
   return (
-    <div key={element._id + index} className={css.list_item} ref={ref}>
+    <div
+      key={element._id + index}
+      className={classNames(css.list_item, isHover && css.drop_hover)}
+      ref={ref}
+    >
       {type ? null : <DragIcon type="primary" />}
       <ConstructorElement
         type={type}
