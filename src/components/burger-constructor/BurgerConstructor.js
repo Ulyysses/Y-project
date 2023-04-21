@@ -60,14 +60,14 @@ const BurgerConstructor = () => {
 
   const makeOrder = () => {
     const api = "https://norma.nomoreparties.space/api/orders";
-    const ingredientsArray = cartIngredients.map((element) => element._id);
+    const ingredientsId = cartIngredients.map((element) => element._id);
     fetch(api, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ingredients: ingredientsArray,
+        ingredients: ingredientsId,
       }),
     })
       .then((response) => response.json())
