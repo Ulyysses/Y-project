@@ -18,7 +18,9 @@ const BurgerIngredients = ({ isLoading }) => {
 
   const dispatch = useDispatch();
 
-  const ingredients = useSelector((state) => state.ingredients.dataIngredients);
+  const dataIngredients = useSelector(
+    (state) => state.ingredients.dataIngredients
+  );
 
   const modalIngredient = useSelector((state) => state.modal.modalIngredient);
 
@@ -117,7 +119,7 @@ const BurgerIngredients = ({ isLoading }) => {
                 Булки
               </h2>
               <ul className={css.list}>
-                {ingredients.map((ingredient) => {
+                {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "bun") {
                     return (
                       <li
@@ -151,7 +153,7 @@ const BurgerIngredients = ({ isLoading }) => {
                 Соусы
               </h2>
               <ul className={css.list}>
-                {ingredients.map((ingredient) => {
+                {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "sauce") {
                     return (
                       <li
@@ -185,7 +187,7 @@ const BurgerIngredients = ({ isLoading }) => {
                 Начинки
               </h2>
               <ul className={css.list}>
-                {ingredients.map((ingredient) => {
+                {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "main") {
                     return (
                       <li
