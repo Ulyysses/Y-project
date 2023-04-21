@@ -70,7 +70,12 @@ const BurgerConstructor = () => {
         ingredients: ingredientsId,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("error HTTP " + response.status);
+        }
+        return response.json();
+      })
       .then((data) => {
         dispatch(setModalOrderNumber(data.order.number));
         console.log("Success:", data);
