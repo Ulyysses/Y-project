@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import {
   Button,
   CurrencyIcon,
@@ -21,12 +22,15 @@ const BurgerConstructor = () => {
     (state) => state.ingredients.dataIngredients
   );
 
-  const [, dropTarget] = useDrop({
+  const [{ isHover }, dropTarget] = useDrop({
     accept: "ingredient",
     drop(item) {
       const ingredient = dataIngredients.find((el) => el._id === item.id);
       dispatch(addIngredient(ingredient));
     },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
   });
 
   const [hasError, setHasError] = useState(false);
@@ -80,7 +84,10 @@ const BurgerConstructor = () => {
   };
 
   return (
-    <section className={css.constructor} ref={dropTarget}>
+    <section
+      className={classNames(css.constructor, isHover && css.drop_hover)}
+      ref={dropTarget}
+    >
       <div className={css.list}>
         <div className={css.list_start_end}>
           {cartIngredients.map((element, index) => {

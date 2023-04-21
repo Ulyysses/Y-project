@@ -3,6 +3,7 @@
 .constructor {
   display: flex;
   margin-top: 30px;
+  width: 100%;
 
   @media (min-width: variables.$tablet-width) {
     justify-content: center;
@@ -11,7 +12,13 @@
   @media (min-width: variables.$desktop-width) {
     margin-top: 0;
     justify-content: flex-end;
+    padding-top: 45px;
   }
+}
+
+.drop_hover {
+  outline: 1px solid var(--colors-interface-success);
+  border-radius: 30px;
 }
 
 .list {
