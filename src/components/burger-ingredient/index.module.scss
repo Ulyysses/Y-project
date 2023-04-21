@@ -6,11 +6,7 @@
   align-items: center;
   margin-top: 10px;
   position: relative;
-  cursor: grabbing;
-
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 
   &:active {
     cursor: grabbing;
