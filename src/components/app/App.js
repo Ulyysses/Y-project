@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { Routes, Route } from "react-router-dom";
 
 import AppHeader from "../app-header";
-import BurgerIngredients from "../burger-ingredients";
-import BurgerConstructor from "../burger-constructor";
 import Error from "../error";
 import Loading from "../loading";
-
 import { setIngredients } from "../../services/ingredients";
+import MainPage from "../../pages/main-page/MainPage";
+import Login from "../../pages/login/Login";
+import Register from "../../pages/register/Register";
+import ForgotPassword from "../../pages/forgot-password/ForgotPassword";
+import ResetPassword from "../../pages/reset-password/ResetPassword";
+import Profile from "../../pages/profile/Profile";
+import { ProvideAuth } from "../../pages/auth";
+import { ProtectedRouteElement } from "../../pages/ProtectedRouteElement";
+import IngredientPage from "../../pages/ingredient-page/IngredientPage";
+import NotFound404 from "../../pages/404/NotFound404";
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
@@ -25,7 +31,7 @@ const App = () => {
         dispatch(setIngredients(result.data));
         setIsLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setHasError(true);
         setIsLoading(false);
       });
@@ -43,15 +49,21 @@ const App = () => {
         <>
           <AppHeader />
           <main className="container">
-            <h1 className="text text_type_main-large mt-10 mb-5">
-              Соберите бургер
-            </h1>
-            <DndProvider backend={HTML5Backend}>
-              <div className="small_container">
-                <BurgerIngredients isLoading={isLoading} />
-                <BurgerConstructor isLoading={isLoading} />
-              </div>
-            </DndProvider>
+            <ProvideAuth>
+              <Routes>
+                <Route
+                  path="/profile"
+                  element={<ProtectedRouteElement element={<Profile />} />}
+                />
+                <Route path="/ingredients/:id" element={<IngredientPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="*" element={<NotFound404 />} />
+                <Route path="/" element={<MainPage />} />
+              </Routes>
+            </ProvideAuth>
           </main>
         </>
       )}
