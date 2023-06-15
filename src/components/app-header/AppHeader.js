@@ -1,4 +1,6 @@
+import React from "react";
 import classNames from "classnames";
+import { Link, NavLink } from "react-router-dom";
 import {
   Logo,
   ListIcon,
@@ -14,7 +16,12 @@ const AppHeader = () => {
       <nav className={classNames("container", css.header_nav)}>
         <ul className={css.nav_list}>
           <li className={css.list_item}>
-            <a href="#" className={css.nav_link}>
+            <NavLink
+              to="/"
+              className={({ isActive }) => {
+                return classNames(css.nav_link, isActive ? css.active : "");
+              }}
+            >
               <BurgerIcon type="secondary" />
               <span
                 className={classNames(
@@ -24,10 +31,15 @@ const AppHeader = () => {
               >
                 Конструктор
               </span>
-            </a>
+            </NavLink>
           </li>
           <li className={css.list_item}>
-            <a href="#" className={css.nav_link}>
+            <NavLink
+              to="#"
+              className={({ isActive }) => {
+                return classNames(css.nav_link, isActive ? css.active : "");
+              }}
+            >
               <ListIcon type="secondary" />
               <span
                 className={classNames(
@@ -37,15 +49,20 @@ const AppHeader = () => {
               >
                 Лента заказов
               </span>
-            </a>
+            </NavLink>
           </li>
           <li className={classNames(css.list_item, css.nav_logo)}>
-            <a href="#">
+            <Link to="/">
               <Logo />
-            </a>
+            </Link>
           </li>
           <li className={css.list_item}>
-            <a href="#" className={css.nav_link}>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) => {
+                return classNames(css.nav_link, isActive ? css.active : "");
+              }}
+            >
               <ProfileIcon type="secondary" />
               <span
                 className={classNames(
@@ -55,7 +72,7 @@ const AppHeader = () => {
               >
                 Личный кабинет
               </span>
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
