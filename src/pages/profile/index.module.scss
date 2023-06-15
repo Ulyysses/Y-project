@@ -1,0 +1,45 @@
+@use "../../variables.scss";
+
+.profile_link {
+  color: var(--text-inactive-color);
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+.active {
+  color: var(--white);
+}
+
+.profile_text {
+  color: var(--text-inactive-color);
+  opacity: 0.4;
+  width: 320px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  height: calc(100vh - 120px);
+}
+
+.profile_list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 80px;
+}
+
+.profile_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: -70px;
+}
+
+.profile_buttons {
+  display: flex;
+  justify-content: flex-end;
+}
