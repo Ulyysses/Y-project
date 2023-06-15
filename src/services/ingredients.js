@@ -35,6 +35,10 @@ export const ingredientsSlice = createSlice({
         (_, index) => index !== action.payload
       );
     },
+    removeAll: (state) => {
+      state.cartIngredients = [];
+      setLocalStorage("constructor", state.cartIngredients);
+    },
   },
 });
 

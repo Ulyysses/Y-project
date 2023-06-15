@@ -105,6 +105,10 @@ const BurgerConstructor = () => {
       });
   };
 
+  const clearConstructor = () => {
+    dispatch(removeAll());
+  };
+
   return (
     <section
       className={classNames(css.constructor, isHover && css.drop_hover)}
@@ -161,6 +165,14 @@ const BurgerConstructor = () => {
             </p>
             <CurrencyIcon type="primary" />
           </div>
+          <Button
+            htmlType="button"
+            type="secondary"
+            size="medium"
+            onClick={clearConstructor}
+          >
+            Очистить
+          </Button>
           <Button
             type="primary"
             size="large"
