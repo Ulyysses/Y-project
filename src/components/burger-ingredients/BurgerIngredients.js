@@ -159,6 +159,7 @@ const BurgerIngredients = ({ isLoading }) => {
                         key={ingredient._id}
                         onClick={() => {
                           setModalData(ingredient);
+                          handleClick(ingredient._id);
                         }}
                       >
                         <BurgerIngredient
@@ -193,6 +194,7 @@ const BurgerIngredients = ({ isLoading }) => {
                         key={ingredient._id}
                         onClick={() => {
                           setModalData(ingredient);
+                          handleClick(ingredient._id);
                         }}
                       >
                         <BurgerIngredient
