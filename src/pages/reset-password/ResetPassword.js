@@ -15,7 +15,12 @@ import { resetPassword } from "../api";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, isLoading } = useAuth();
+  const {
+    isAuthenticated,
+    isLoading,
+    isActivePasswordReset,
+    setIsActivePasswordReset,
+  } = useAuth();
 
   const [value, setValue] = React.useState({
     password: "",
@@ -38,6 +43,7 @@ const ResetPassword = () => {
       .then((response) => {
         if (response.ok) {
           navigate("/login");
+          setIsActivePasswordReset(false);
         }
       })
       .catch(() => {
@@ -45,7 +51,7 @@ const ResetPassword = () => {
       });
   };
 
-  if (!isAuthenticated) {
+  if (!isActivePasswordReset) {
     return <Navigate to="/forgot-password" replace />;
   }
 

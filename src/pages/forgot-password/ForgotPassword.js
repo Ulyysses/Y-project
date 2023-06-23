@@ -9,7 +9,7 @@ import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
 
 const ForgotPassword = () => {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, setIsActivePasswordReset } = useAuth();
   let navigate = useNavigate();
 
   const [value, setValue] = React.useState({
@@ -30,7 +30,8 @@ const ForgotPassword = () => {
         return res.json();
       })
       .then((response) => {
-        if (response.ok) {
+        if (response.success) {
+          setIsActivePasswordReset(true);
           navigate("/reset-password");
         }
       })

@@ -23,6 +23,8 @@ export function useProvideAuth() {
   const [user, setUser] = React.useState(null);
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isActivePasswordReset, setIsActivePasswordReset] =
+    React.useState(false);
 
   const signIn = async (form) => {
     setIsLoading(true);
@@ -60,38 +62,15 @@ export function useProvideAuth() {
   };
 
   const checkToken = async () => {
-    if (
-      !isAuthenticated &&
-      getCookie("accessToken") !== "null" &&
-      getCookie("accessToken") !== undefined
-    ) {
-      setIsLoading(true);
-      const data = await getUserRequest().then((res) => {
-        return res.json();
-      });
-      if (data.success) {
-        setUser(data.user);
-        setIsAuthenticated(true);
-      }
-      setIsLoading(false);
-    }
-  };
-
-  const checkTokenRefresh = async () => {
-    if (
-      getCookie("accessToken") === "null" ||
-      getCookie("accessToken") === undefined
-    ) {
-      setIsLoading(true);
-      const dataToken = await refreshRequest().then((res) => {
-        return res.json();
-      });
-      if (dataToken.success) {
-        const authToken = dataToken.accessToken.split("Bearer ")[1];
-        const refreshToken = dataToken.refreshToken;
-        setCookie("accessToken", authToken, { expires: 1200 });
-        setCookie("refreshToken", refreshToken);
-        setIsAuthenticated(true);
+    if (getCookie("refreshToken") === "null") {
+      return null;
+    } else {
+      if (
+        !isAuthenticated &&
+        getCookie("accessToken") !== "null" &&
+        getCookie("accessToken") !== undefined
+      ) {
+        setIsLoading(true);
         const data = await getUserRequest().then((res) => {
           return res.json();
         });
@@ -99,8 +78,39 @@ export function useProvideAuth() {
           setUser(data.user);
           setIsAuthenticated(true);
         }
+        setIsLoading(false);
       }
+    }
+  };
+
+  const checkTokenRefresh = async () => {
+    if (getCookie("refreshToken") === "null") {
       setIsLoading(false);
+    } else {
+      if (
+        getCookie("accessToken") === "null" ||
+        getCookie("accessToken") === undefined
+      ) {
+        setIsLoading(true);
+        const dataToken = await refreshRequest().then((res) => {
+          return res.json();
+        });
+        if (dataToken.success) {
+          const authToken = dataToken.accessToken.split("Bearer ")[1];
+          const refreshToken = dataToken.refreshToken;
+          setCookie("accessToken", authToken, { expires: 1200 });
+          setCookie("refreshToken", refreshToken);
+          setIsAuthenticated(true);
+          const data = await getUserRequest().then((res) => {
+            return res.json();
+          });
+          if (data.success) {
+            setUser(data.user);
+            setIsAuthenticated(true);
+          }
+        }
+        setIsLoading(false);
+      }
     }
   };
 
