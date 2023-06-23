@@ -23,16 +23,12 @@ const ForgotPassword = () => {
     }));
   };
 
-  const post = (e) => {
-    e.preventDefault();
-    const api = "https://norma.nomoreparties.space/api/password-reset";
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(value),
-    })
+  const post = async (event) => {
+    event.preventDefault();
+    await forgotPassword(value)
+      .then((res) => {
+        return res.json();
+      })
       .then((response) => {
         if (response.ok) {
           navigate("/reset-password");

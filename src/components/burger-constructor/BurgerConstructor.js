@@ -17,6 +17,7 @@ import { addIngredient, removeAll } from "../../services/ingredients";
 import { useAuth } from "../../pages/auth";
 
 import css from "./index.module.scss";
+import { order } from "../../pages/api";
 
 const BurgerConstructor = () => {
   const { isAuthenticated } = useAuth();
@@ -80,20 +81,11 @@ const BurgerConstructor = () => {
     [cartIngredients]
   );
 
-  const makeOrder = () => {
-    const api = "https://norma.nomoreparties.space/api/orders";
+  const makeOrder = async () => {
     const ingredientsId = cartIngredients.map((element) => element._id);
     setHasError(false);
     setIsLoading(true);
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ingredients: ingredientsId,
-      }),
-    })
+    await order(ingredientsId)
       .then((response) => {
         if (!response.ok) {
           throw new Error("error HTTP " + response.status);

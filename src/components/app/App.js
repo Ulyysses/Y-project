@@ -16,6 +16,7 @@ import { ProvideAuth } from "../../pages/auth";
 import { ProtectedRouteElement } from "../../pages/ProtectedRouteElement";
 import IngredientPage from "../../pages/ingredient-page/IngredientPage";
 import NotFound404 from "../../pages/404/NotFound404";
+import { ingredientsList } from "../../pages/api";
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
@@ -24,17 +25,19 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const api = "https://norma.nomoreparties.space/api/ingredients";
-    fetch(api)
-      .then((res) => res.json())
-      .then((result) => {
+    const showMainPage = async () => {
+      try {
+        const res = await ingredientsList();
+        const result = await res.json();
         dispatch(setIngredients(result.data));
         setIsLoading(false);
-      })
-      .catch(() => {
+      } catch (error) {
         setHasError(true);
         setIsLoading(false);
-      });
+        console.error(error);
+      }
+    };
+    showMainPage();
   }, []);
 
   if (isLoading) {

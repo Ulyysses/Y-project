@@ -11,6 +11,7 @@ import css from "../index.module.scss";
 import InputPassword from "../input-password/InputPassword";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
+import { resetPassword } from "../api";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -28,16 +29,12 @@ const ResetPassword = () => {
     }));
   };
 
-  const post = (e) => {
-    e.preventDefault();
-    const api = "https://norma.nomoreparties.space/api/password-reset/reset";
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(value),
-    })
+  const post = async (event) => {
+    event.preventDefault();
+    await resetPassword(value)
+      .then((res) => {
+        return res.json();
+      })
       .then((response) => {
         if (response.ok) {
           navigate("/login");

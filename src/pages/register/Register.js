@@ -9,6 +9,7 @@ import InputName from "../input-name/InputName";
 import InputEmail from "../input-email/InputEmail";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
+import { register } from "../api";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -27,16 +28,12 @@ const Register = () => {
     }));
   };
 
-  const post = (e) => {
-    e.preventDefault();
-    const api = "https://norma.nomoreparties.space/api/auth/register";
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(value),
-    })
+  const post = async (event) => {
+    event.preventDefault();
+    await register(value)
+      .then((res) => {
+        return res.json();
+      })
       .then((response) => {
         if (response.ok) {
           navigate("/login");
