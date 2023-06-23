@@ -11,7 +11,7 @@ import Loading from "../../components/loading/Loading";
 import css from "../index.module.scss";
 
 const Login = () => {
-  const { isAuthenticated, signIn, isLoading } = useAuth();
+  const { isAuthenticated, signIn, isLoading, hasError } = useAuth();
   const [value, setValue] = React.useState({
     email: "",
     password: "",
@@ -58,6 +58,16 @@ const Login = () => {
           value={value}
           placeholder={"Пароль"}
         />
+        {hasError && (
+          <p
+            className={classNames(
+              "text text_type_main-default",
+              css.error_message
+            )}
+          >
+            {hasError}
+          </p>
+        )}
         <Button htmlType="submit" type="primary" size="medium">
           Войти
         </Button>

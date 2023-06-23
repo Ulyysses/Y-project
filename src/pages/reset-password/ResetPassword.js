@@ -1,5 +1,4 @@
-import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import React from "react";
 import classNames from "classnames";
 import {
@@ -27,6 +26,8 @@ const ResetPassword = () => {
     token: "",
   });
 
+  const [hasError, setHasError] = React.useState();
+
   const changeValue = (e) => {
     setValue(() => ({
       ...value,
@@ -41,9 +42,13 @@ const ResetPassword = () => {
         return res.json();
       })
       .then((response) => {
-        if (response.ok) {
+        if (response.success) {
           navigate("/login");
           setIsActivePasswordReset(false);
+        }
+
+        if (!response.success) {
+          setHasError(response.message);
         }
       })
       .catch(() => {
@@ -80,6 +85,16 @@ const ResetPassword = () => {
           size={"default"}
           extraClass="ml-1"
         />
+        {hasError && (
+          <p
+            className={classNames(
+              "text text_type_main-default",
+              css.error_message
+            )}
+          >
+            {hasError}
+          </p>
+        )}
         <Button htmlType="submit" type="primary" size="medium">
           Сохранить
         </Button>

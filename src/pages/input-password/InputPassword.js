@@ -48,7 +48,7 @@ const InputPassword = ({ value, changeValue, placeholder }) => {
       icon={iconPassword}
       name={"password"}
       error={passwordHasError}
-      errorText={"Придумай пароль надежнее!"}
+      errorText={"Невалидный пароль!"}
       onBlur={onBlur}
       required
     />

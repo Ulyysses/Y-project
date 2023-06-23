@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   loginRequest,
   logoutRequest,
@@ -25,9 +24,11 @@ export function useProvideAuth() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isActivePasswordReset, setIsActivePasswordReset] =
     React.useState(false);
+  const [hasError, setHasError] = React.useState();
 
   const signIn = async (form) => {
     setIsLoading(true);
+
     const data = await loginRequest(form).then((res) => {
       return res.json();
     });
@@ -40,10 +41,13 @@ export function useProvideAuth() {
       setUser({ email: data.user.email, name: data.user.name });
       setIsAuthenticated(true);
     }
+
+    if (!data.success) {
+      setHasError(data.message);
+    }
+
     setIsLoading(false);
   };
-
-  const dispatch = useDispatch();
 
   const signOut = async () => {
     setIsLoading(true);
@@ -127,6 +131,10 @@ export function useProvideAuth() {
     checkToken,
     checkTokenRefresh,
     isLoading,
+    isActivePasswordReset,
+    setIsActivePasswordReset,
+    hasError,
+    setHasError,
   };
 }
 

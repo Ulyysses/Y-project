@@ -7,6 +7,7 @@ import css from "../index.module.scss";
 import InputEmail from "../input-email/InputEmail";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
+import { forgotPassword } from "../api";
 
 const ForgotPassword = () => {
   const { isAuthenticated, isLoading, setIsActivePasswordReset } = useAuth();
@@ -15,6 +16,8 @@ const ForgotPassword = () => {
   const [value, setValue] = React.useState({
     email: "",
   });
+
+  const [hasError, setHasError] = React.useState();
 
   const changeValue = (e) => {
     setValue(() => ({
@@ -33,6 +36,10 @@ const ForgotPassword = () => {
         if (response.success) {
           setIsActivePasswordReset(true);
           navigate("/reset-password");
+        }
+
+        if (!response.success) {
+          setHasError(response.message);
         }
       })
       .catch(() => {
@@ -57,6 +64,16 @@ const ForgotPassword = () => {
           changeValue={changeValue}
           placeholder={"Укажите e-mail"}
         />
+        {hasError && (
+          <p
+            className={classNames(
+              "text text_type_main-default",
+              css.error_message
+            )}
+          >
+            {hasError}
+          </p>
+        )}
         <Button htmlType="submit" type="primary" size="medium">
           Восстановить
         </Button>

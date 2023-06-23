@@ -21,6 +21,8 @@ const Register = () => {
     password: "",
   });
 
+  const [hasError, setHasError] = React.useState();
+
   const changeValue = (e) => {
     setValue(() => ({
       ...value,
@@ -35,7 +37,11 @@ const Register = () => {
         return res.json();
       })
       .then((response) => {
-        if (response.ok) {
+        if (!response.success) {
+          setHasError(response.message);
+        }
+
+        if (response.success) {
           navigate("/login");
         }
       })
@@ -71,6 +77,16 @@ const Register = () => {
           value={value}
           placeholder={"Пароль"}
         />
+        {hasError && (
+          <p
+            className={classNames(
+              "text text_type_main-default",
+              css.error_message
+            )}
+          >
+            {hasError}
+          </p>
+        )}
         <Button htmlType="submit" type="primary" size="medium">
           Зарегистрироваться
         </Button>
