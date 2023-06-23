@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Logo,
   ListIcon,
@@ -11,6 +11,12 @@ import {
 import css from "./index.module.scss";
 
 const AppHeader = () => {
+  const location = useLocation();
+
+  const isActive = () => {
+    return location.pathname === "/profile" || location.pathname === "/login";
+  };
+
   return (
     <header className={css.main_header}>
       <nav className={classNames("container", css.header_nav)}>
@@ -35,7 +41,7 @@ const AppHeader = () => {
           </li>
           <li className={css.list_item}>
             <NavLink
-              to="#"
+              to="/listOrder"
               className={({ isActive }) => {
                 return classNames(css.nav_link, isActive ? css.active : "");
               }}
@@ -59,9 +65,7 @@ const AppHeader = () => {
           <li className={css.list_item}>
             <NavLink
               to="/profile"
-              className={({ isActive }) => {
-                return classNames(css.nav_link, isActive ? css.active : "");
-              }}
+              className={classNames(css.nav_link, isActive() ? css.active : "")}
             >
               <ProfileIcon type="secondary" />
               <span
