@@ -1,7 +1,9 @@
 import { getCookie } from "../utils/cookie";
 
+const domain = "https://norma.nomoreparties.space";
+
 export const loginRequest = async (form) => {
-  const api = "https://norma.nomoreparties.space/api/auth/login";
+  const api = `${domain}/api/auth/login`;
   return await fetch(api, {
     method: "POST",
     mode: "cors",
@@ -18,7 +20,7 @@ export const loginRequest = async (form) => {
 };
 
 export const logoutRequest = async () => {
-  const api = "https://norma.nomoreparties.space/api/auth/logout";
+  const api = `${domain}/api/auth/logout`;
   return await fetch(api, {
     method: "POST",
     mode: "cors",
@@ -34,7 +36,7 @@ export const logoutRequest = async () => {
 };
 
 export const refreshRequest = async () => {
-  const api = "https://norma.nomoreparties.space/api/auth/token";
+  const api = `${domain}/api/auth/token`;
   return await fetch(api, {
     method: "POST",
     mode: "cors",
@@ -50,7 +52,7 @@ export const refreshRequest = async () => {
 };
 
 export const getUserRequest = async () => {
-  const api = "https://norma.nomoreparties.space/api/auth/user";
+  const api = `${domain}/api/auth/user`;
   return await fetch(api, {
     method: "GET",
     mode: "cors",
@@ -66,7 +68,7 @@ export const getUserRequest = async () => {
 };
 
 export const refreshUserRequest = async (value) => {
-  const api = "https://norma.nomoreparties.space/api/auth/user";
+  const api = `${domain}/api/auth/user`;
   return await fetch(api, {
     method: "PATCH",
     mode: "cors",
@@ -79,5 +81,56 @@ export const refreshUserRequest = async (value) => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify(value),
+  });
+};
+
+export const resetPassword = async (value) => {
+  const api = `${domain}/api/password-reset/reset`;
+  return await fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(value),
+  });
+};
+
+export const forgotPassword = async (value) => {
+  const api = `${domain}/api/password-reset`;
+  return await fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(value),
+  });
+};
+
+export const register = async (value) => {
+  const api = `${domain}/api/auth/register`;
+  return await fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(value),
+  });
+};
+
+export const ingredientsList = async () => {
+  const api = `${domain}/api/ingredients`;
+  return await fetch(api);
+};
+
+export const order = async (ingredientsId) => {
+  const api = `${domain}/api/orders`;
+  return await fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ingredients: ingredientsId,
+    }),
   });
 };
