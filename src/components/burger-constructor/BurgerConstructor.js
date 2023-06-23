@@ -172,8 +172,9 @@ const BurgerConstructor = () => {
             type="secondary"
             size="medium"
             onClick={clearConstructor}
+            disabled={isClearDisabled}
           >
-            Очистить disabled={isClearDisabled}
+            Очистить
           </Button>
           <Button
             type="primary"
