@@ -81,6 +81,10 @@ const BurgerConstructor = () => {
     [cartIngredients]
   );
 
+  const isClearDisabled = useMemo(
+    () => !(cartIngredients.length >= 1),
+    [cartIngredients]
+  );
   const makeOrder = async () => {
     const ingredientsId = cartIngredients.map((element) => element._id);
     setHasError(false);
@@ -169,7 +173,7 @@ const BurgerConstructor = () => {
             size="medium"
             onClick={clearConstructor}
           >
-            Очистить
+            Очистить disabled={isClearDisabled}
           </Button>
           <Button
             type="primary"
