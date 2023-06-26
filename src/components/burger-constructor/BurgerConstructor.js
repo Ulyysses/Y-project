@@ -1,23 +1,27 @@
 import { useState, useMemo } from "react";
 import { useDrop } from "react-dnd";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import { useSelector, useDispatch } from "react-redux";
 import { clearModal, setModalOrderNumber } from "../../services/modal";
 import OrderDetails from "../order-details";
 import Modal from "../modal";
 import BurgerElement from "../burger-element/BurgerElement";
-
-import { addIngredient } from "../../services/ingredients";
+import { addIngredient, removeAll } from "../../services/ingredients";
+import { useAuth } from "../../pages/auth";
 
 import css from "./index.module.scss";
+import { order } from "../../pages/api";
 
 const BurgerConstructor = () => {
+  const { isAuthenticated } = useAuth();
+
   const dataIngredients = useSelector(
     (state) => state.ingredients.dataIngredients
   );
@@ -50,9 +54,13 @@ const BurgerConstructor = () => {
     dispatch(clearModal());
   };
 
+  const navigate = useNavigate();
+
   const handleClickMakeOrder = () => {
-    if (cartIngredients.length > 1) {
+    if (isAuthenticated && cartIngredients.length > 1) {
       makeOrder();
+    } else {
+      navigate("/login");
     }
   };
 
@@ -73,20 +81,15 @@ const BurgerConstructor = () => {
     [cartIngredients]
   );
 
-  const makeOrder = () => {
-    const api = "https://norma.nomoreparties.space/api/orders";
+  const isClearDisabled = useMemo(
+    () => !(cartIngredients.length >= 1),
+    [cartIngredients]
+  );
+  const makeOrder = async () => {
     const ingredientsId = cartIngredients.map((element) => element._id);
     setHasError(false);
     setIsLoading(true);
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ingredients: ingredientsId,
-      }),
-    })
+    await order(ingredientsId)
       .then((response) => {
         if (!response.ok) {
           throw new Error("error HTTP " + response.status);
@@ -95,7 +98,6 @@ const BurgerConstructor = () => {
       })
       .then((data) => {
         dispatch(setModalOrderNumber(data.order.number));
-        console.log("Success:", data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -103,6 +105,10 @@ const BurgerConstructor = () => {
         console.error("Error:", error);
         setIsLoading(false);
       });
+  };
+
+  const clearConstructor = () => {
+    dispatch(removeAll());
   };
 
   return (
@@ -162,6 +168,15 @@ const BurgerConstructor = () => {
             <CurrencyIcon type="primary" />
           </div>
           <Button
+            htmlType="button"
+            type="secondary"
+            size="medium"
+            onClick={clearConstructor}
+            disabled={isClearDisabled}
+          >
+            Очистить
+          </Button>
+          <Button
             type="primary"
             size="large"
             onClick={handleClickMakeOrder}
@@ -185,6 +200,7 @@ BurgerConstructor.propTypes = {
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired,
     }).isRequired
   ),
 };

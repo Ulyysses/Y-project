@@ -42,6 +42,18 @@
   white-space: nowrap;
 }
 
+.active {
+  & .nav_link_text {
+    color: var(--text-primary-color);
+    transition: var(--common-transition);
+  }
+
+  & svg path {
+    fill: var(--text-primary-color);
+    transition: var(--common-transition);
+  }
+}
+
 .nav_link {
   height: 56px;
   border-radius: 40px;

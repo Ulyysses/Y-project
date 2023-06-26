@@ -1,5 +1,5 @@
 import { useState, useRef, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -9,28 +9,22 @@ import Modal from "../modal";
 import IngredientDetails from "../ingredient-details";
 import Loading from "../loading";
 
-import { setModalIngredient, clearModal } from "../../services/modal";
-
 import css from "./index.module.scss";
 
 const BurgerIngredients = ({ isLoading }) => {
   const [current, setCurrent] = useState("bun");
 
-  const dispatch = useDispatch();
-
   const dataIngredients = useSelector(
     (state) => state.ingredients.dataIngredients
   );
 
-  const modalIngredient = useSelector((state) => state.modal.modalIngredient);
+  const [modalData, setModalData] = useState(null);
 
-  const modalActive = Boolean(modalIngredient);
+  const modalActive = Boolean(modalData);
+
   const onClose = () => {
-    dispatch(clearModal());
-  };
-
-  const ingredientModal = (ingredient) => {
-    dispatch(setModalIngredient(ingredient));
+    setModalData(null);
+    window.history.replaceState(null, "", "/");
   };
 
   const cartIngredients = useSelector(
@@ -70,6 +64,10 @@ const BurgerIngredients = ({ isLoading }) => {
     } else {
       setCurrent("main");
     }
+  };
+
+  const handleClick = (id) => {
+    window.history.replaceState(null, "", `/ingredients/${id}`);
   };
 
   return (
@@ -125,7 +123,8 @@ const BurgerIngredients = ({ isLoading }) => {
                       <li
                         key={ingredient._id}
                         onClick={() => {
-                          ingredientModal(ingredient);
+                          setModalData(ingredient);
+                          handleClick(ingredient._id);
                         }}
                       >
                         <BurgerIngredient
@@ -159,7 +158,8 @@ const BurgerIngredients = ({ isLoading }) => {
                       <li
                         key={ingredient._id}
                         onClick={() => {
-                          ingredientModal(ingredient);
+                          setModalData(ingredient);
+                          handleClick(ingredient._id);
                         }}
                       >
                         <BurgerIngredient
@@ -193,7 +193,8 @@ const BurgerIngredients = ({ isLoading }) => {
                       <li
                         key={ingredient._id}
                         onClick={() => {
-                          ingredientModal(ingredient);
+                          setModalData(ingredient);
+                          handleClick(ingredient._id);
                         }}
                       >
                         <BurgerIngredient
@@ -213,7 +214,7 @@ const BurgerIngredients = ({ isLoading }) => {
           </div>
           {modalActive && (
             <Modal active={modalActive} onClose={onClose}>
-              <IngredientDetails />
+              <IngredientDetails data={modalData} />
             </Modal>
           )}
         </>

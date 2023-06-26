@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getLocalStorage, setLocalStorage } from "../utils/localStorage";
 
 const initialState = {
   dataIngredients: null,
-  cartIngredients: [],
+  cartIngredients: getLocalStorage("cartIngredients") ?? [],
 };
 
 export const ingredientsSlice = createSlice({
@@ -20,6 +21,7 @@ export const ingredientsSlice = createSlice({
         );
       }
       state.cartIngredients.push(newIngredient);
+      setLocalStorage("cartIngredients", state.cartIngredients);
     },
     moveIngredient: (state, action) => {
       const [indexDrag, indexDrop] = action.payload;
@@ -29,11 +31,17 @@ export const ingredientsSlice = createSlice({
         newArr[indexDrag],
       ];
       state.cartIngredients = newArr;
+      setLocalStorage("cartIngredients", state.cartIngredients);
     },
     removeIngredient: (state, action) => {
       state.cartIngredients = state.cartIngredients.filter(
         (_, index) => index !== action.payload
       );
+      setLocalStorage("cartIngredients", state.cartIngredients);
+    },
+    removeAll: (state) => {
+      state.cartIngredients = [];
+      setLocalStorage("cartIngredients", state.cartIngredients);
     },
   },
 });
@@ -43,6 +51,7 @@ export const {
   addIngredient,
   removeIngredient,
   moveIngredient,
+  removeAll,
 } = ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer;
