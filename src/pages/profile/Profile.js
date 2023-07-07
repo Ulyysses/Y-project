@@ -85,7 +85,7 @@ const Profile = () => {
           </li>
           <li>
             <NavLink
-              to="/"
+              to="/profile/orders"
               className={({ isActive }) => {
                 return classNames(
                   "text text_type_main-medium",

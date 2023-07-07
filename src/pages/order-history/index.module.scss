@@ -1,0 +1,50 @@
+.profile_link {
+  color: var(--text-inactive-color);
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+.active {
+  color: var(--white);
+}
+
+.profile_text {
+  color: var(--text-inactive-color);
+  opacity: 0.4;
+  width: 320px;
+}
+
+.order_history {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  height: calc(100vh - 120px);
+}
+
+.profile_list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 80px;
+}
+
+.order_list {
+  margin-top: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: calc(100% - 20px);
+}
+
+.order_item {
+  width: 880px;
+  margin-right: 9px;
+  background-color: var(--background);
+  padding: 24px;
+  border-radius: 40px;
+  color: var(--text-primary-color);
+}

@@ -41,7 +41,7 @@ const AppHeader = () => {
           </li>
           <li className={css.list_item}>
             <NavLink
-              to="/listOrder"
+              to="/feed"
               className={({ isActive }) => {
                 return classNames(css.nav_link, isActive ? css.active : "");
               }}

@@ -1,0 +1,28 @@
+.upper_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+
+.lower_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.icons_wrapper {
+  display: flex;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  border-radius: 40px;
+}
+
+.price_wrapper {
+  display: flex;
+  gap: 10px;
+}

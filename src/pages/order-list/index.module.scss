@@ -1,0 +1,17 @@
+.list_wrapper {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100% - 20px);
+}
+
+.item_wrapper {
+  width: 600px;
+  background-color: var(--background);
+  padding: 24px;
+  border-radius: 40px;
+  color: var(--text-primary-color);
+}
