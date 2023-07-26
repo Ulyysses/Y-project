@@ -3,11 +3,12 @@ import React from "react";
 import classNames from "classnames";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import css from "../index.module.scss";
 import InputEmail from "../input-email/InputEmail";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
 import { forgotPassword } from "../api";
+
+import css from "../index.module.scss";
 
 const ForgotPassword = () => {
   const { isAuthenticated, isLoading, setIsActivePasswordReset } = useAuth();
