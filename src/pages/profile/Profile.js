@@ -1,21 +1,19 @@
 import React, { useRef } from "react";
-import { NavLink } from "react-router-dom";
 import classNames from "classnames";
-import { useDispatch } from "react-redux";
 import {
   Input,
   EmailInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import css from "./index.module.scss";
 import { useAuth } from "../auth";
 import { refreshUserRequest } from "../api";
-import { removeAll } from "../../services/ingredients";
+import ProfileNav from "../profile-nav/ProfileNav";
+
+import css from "./index.module.scss";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   const [value, setValue] = React.useState({
     name: user.name,
@@ -27,12 +25,6 @@ const Profile = () => {
       ...value,
       [event.target.name]: event.target.value,
     }));
-  };
-
-  const logout = (e) => {
-    e.preventDefault();
-    signOut();
-    dispatch(removeAll());
   };
 
   const changeInfo = async () => {
@@ -70,51 +62,7 @@ const Profile = () => {
   return (
     <div className={css.profile}>
       <div className={css.profile_nav}>
-        <ul className={css.profile_list}>
-          <li>
-            <NavLink
-              to="/profile"
-              className={({ isActive }) => {
-                return classNames(
-                  "text text_type_main-medium",
-                  css.profile_link,
-                  isActive ? css.active : ""
-                );
-              }}
-            >
-              Профиль
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/profile/orders"
-              className={({ isActive }) => {
-                return classNames(
-                  "text text_type_main-medium",
-                  css.profile_link,
-                  isActive ? css.active : ""
-                );
-              }}
-            >
-              История заказов
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => {
-                return classNames(
-                  "text text_type_main-medium",
-                  css.profile_link,
-                  isActive ? css.active : ""
-                );
-              }}
-              onClick={logout}
-            >
-              Выход
-            </NavLink>
-          </li>
-        </ul>
+        <ProfileNav />
         <p
           className={classNames(
             "text text_type_main-default",
