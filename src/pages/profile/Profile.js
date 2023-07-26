@@ -56,6 +56,8 @@ const Profile = () => {
 
   const [disabled, setDisabled] = React.useState(true);
 
+  const isChanged = value.name !== user.name || value.email !== user.email;
+
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
     setDisabled(false);
@@ -150,6 +152,7 @@ const Profile = () => {
             type="secondary"
             size="medium"
             onClick={resetInfo}
+            disabled={!isChanged}
           >
             Отмена
           </Button>
@@ -158,6 +161,7 @@ const Profile = () => {
             type="primary"
             size="medium"
             onClick={changeInfo}
+            disabled={!isChanged}
           >
             Сохранить
           </Button>
