@@ -9,6 +9,7 @@ import ProfileNav from "../../pages/profile-nav/ProfileNav";
 import { wsConnectionStart } from "../../services/orders";
 
 import css from "./index.module.scss";
+import Loading from "../../components/loading";
 
 const OrderHistory = () => {
   const dispatch = useDispatch();
@@ -32,14 +33,6 @@ const OrderHistory = () => {
     window.history.replaceState(null, "", `/profile/orders/${id}`);
   };
 
-  // const status = (status) => {
-  //   return status === "done"
-  //     ? "Выполнен"
-  //     : status === "created"
-  //     ? "Готовится"
-  //     : "Отменен";
-  // };
-
   return (
     <div className={css.order_history}>
       <div className={css.profile_nav}>
@@ -53,37 +46,44 @@ const OrderHistory = () => {
           В этом разделе вы можете просмотреть свою историю заказов
         </p>
       </div>
-      <ul className={css.order_list}>
-        {orders
-          ?.slice()
-          .reverse()
-          .map((order) => {
-            return (
-              <li
-                key={order._id}
-                className={css.order_item}
-                onClick={() => {
-                  setModalData(order);
-                  handleClick(order._id);
-                }}
-              >
-                <Order
-                  number={order.number}
-                  date={order.createdAt}
-                  ingredients={order.ingredients}
-                  name={order.name}
-                  status={
-                    order.status === "done"
-                      ? "Выполнен"
-                      : order.status === "created"
-                      ? "Готовится"
-                      : "Отменен"
-                  }
-                />
-              </li>
-            );
-          })}
-      </ul>
+      {!orders ? (
+        <div className={css.order_loading}>
+          <Loading />
+        </div>
+      ) : (
+        <ul className={css.order_list}>
+          {orders
+            ?.slice()
+            .reverse()
+            .map((order) => {
+              return (
+                <li
+                  key={order._id}
+                  className={css.order_item}
+                  onClick={() => {
+                    setModalData(order);
+                    handleClick(order._id);
+                  }}
+                >
+                  <Order
+                    number={order.number}
+                    date={order.createdAt}
+                    ingredients={order.ingredients}
+                    name={order.name}
+                    status={
+                      order.status === "done"
+                        ? "Выполнен"
+                        : order.status === "created"
+                        ? "Готовится"
+                        : "Отменен"
+                    }
+                  />
+                </li>
+              );
+            })}
+        </ul>
+      )}
+
       {modalActive && (
         <Modal active={modalActive} onClose={onClose}>
           <div className={css.order_modal}>

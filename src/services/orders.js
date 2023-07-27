@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   wsConnected: false,
-  orders: [],
+  orders: null,
   error: undefined,
 };
 
