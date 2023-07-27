@@ -1,8 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import OrderList from "../order-list/OrderList";
 import OrderReadiness from "../order-readiness/OrderReadiness";
 import Loading from "../../components/loading";
+import { allConnectionStart } from "../../services/ordersAll";
 
 const FeedPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: allConnectionStart.type });
+  }, []);
+
   const orders = useSelector((state) => state.allOrders.orders);
 
   if (!orders) {

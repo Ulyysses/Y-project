@@ -1,21 +1,14 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import Order from "../order/Order";
 import Modal from "../../components/modal/Modal";
 import OrderFull from "../order-full/OrderFull";
-import { allConnectionStart } from "../../services/ordersAll";
 
 import css from "./index.module.scss";
 
 const OrderList = () => {
-  const dispatch = useDispatch();
-
   const orders = useSelector((state) => state.allOrders.orders);
-
-  useEffect(() => {
-    dispatch({ type: allConnectionStart.type });
-  }, []);
 
   const [modalData, setModalData] = useState(null);
 
