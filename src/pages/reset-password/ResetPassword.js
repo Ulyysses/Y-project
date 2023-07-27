@@ -9,7 +9,7 @@ import {
 import InputPassword from "../input-password/InputPassword";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
-import { resetPassword } from "../api";
+import { resetPassword } from "../../utils/api";
 
 import css from "../index.module.scss";
 

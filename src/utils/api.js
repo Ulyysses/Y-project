@@ -1,4 +1,4 @@
-import { getCookie } from "../utils/cookie";
+import { getCookie } from "./cookie";
 
 const domain = "https://norma.nomoreparties.space";
 
@@ -135,3 +135,9 @@ export const order = async (ingredientsId) => {
     }),
   });
 };
+
+export const apiOrders = `wss://norma.nomoreparties.space/orders?token=${getCookie(
+  "accessToken"
+)}`;
+
+export const apiOrdersAll = `wss://norma.nomoreparties.space/orders/all`;

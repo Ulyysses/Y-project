@@ -15,7 +15,7 @@ import Modal from "../modal";
 import BurgerElement from "../burger-element/BurgerElement";
 import { addIngredient, removeAll } from "../../services/ingredients";
 import { useAuth } from "../../pages/auth";
-import { order } from "../../pages/api";
+import { order } from "../../utils/api";
 import { countPrice } from "../../utils/helpers";
 
 import css from "./index.module.scss";

@@ -7,7 +7,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { useAuth } from "../auth";
-import { refreshUserRequest } from "../api";
+import { refreshUserRequest } from "../../utils/api";
 import ProfileNav from "../profile-nav/ProfileNav";
 
 import css from "./index.module.scss";

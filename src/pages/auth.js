@@ -5,7 +5,7 @@ import {
   logoutRequest,
   getUserRequest,
   refreshRequest,
-} from "./api";
+} from "../utils/api";
 
 import { getCookie, setCookie } from "../utils/cookie";
 

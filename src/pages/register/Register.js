@@ -8,7 +8,7 @@ import InputName from "../input-name/InputName";
 import InputEmail from "../input-email/InputEmail";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
-import { register } from "../api";
+import { register } from "../../utils/api";
 
 import css from "../index.module.scss";
 

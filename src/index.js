@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "./services/reducers/rootReducer";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import App from "./components/app/App";
-import "./index.scss";
-import "./layout.scss";
 import { BrowserRouter } from "react-router-dom";
+
+import App from "./components/app/App";
+import { rootReducer } from "./services/reducers/rootReducer";
 import { socketMiddleware } from "./services/middleware/socketMiddleware";
-import { getCookie } from "./utils/cookie";
 import {
   wsConnectionSuccess,
   wsConnectionError,
@@ -24,6 +22,10 @@ import {
   allGetOrders,
   allConnectionStart,
 } from "./services/ordersAll.js";
+import { apiOrders, apiOrdersAll } from "./utils/api";
+
+import "./index.scss";
+import "./layout.scss";
 
 const wsOrdersActions = [
   wsConnectionSuccess,
@@ -45,16 +47,8 @@ const store = configureStore({
   ...rootReducer,
   middleware: [
     thunk,
-    socketMiddleware(
-      `wss://norma.nomoreparties.space/orders?token=${getCookie(
-        "accessToken"
-      )}`,
-      wsOrdersActions
-    ),
-    socketMiddleware(
-      `wss://norma.nomoreparties.space/orders/all`,
-      allOrdersAllActions
-    ),
+    socketMiddleware(apiOrders, wsOrdersActions),
+    socketMiddleware(apiOrdersAll, allOrdersAllActions),
   ],
 });
 

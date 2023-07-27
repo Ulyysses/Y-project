@@ -6,7 +6,7 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import InputEmail from "../input-email/InputEmail";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
-import { forgotPassword } from "../api";
+import { forgotPassword } from "../../utils/api";
 
 import css from "../index.module.scss";
 

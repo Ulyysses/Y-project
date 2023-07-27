@@ -16,7 +16,7 @@ import { ProvideAuth } from "../../pages/auth";
 import { ProtectedRouteElement } from "../../pages/ProtectedRouteElement";
 import IngredientPage from "../../pages/ingredient-page/IngredientPage";
 import NotFound404 from "../../pages/404/NotFound404";
-import { ingredientsList } from "../../pages/api";
+import { ingredientsList } from "../../utils/api";
 import FeedPage from "../../orders/feed-page/FeedPage";
 import OrderPage from "../../orders/order-page/OrderPage";
 import OrderHistory from "../../orders/order-history/OrderHistory";
