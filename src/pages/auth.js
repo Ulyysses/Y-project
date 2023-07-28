@@ -96,9 +96,7 @@ export function useProvideAuth() {
         getCookie("accessToken") === undefined
       ) {
         setIsLoading(true);
-        const dataToken = await refreshRequest().then((res) => {
-          return res.json();
-        });
+        const dataToken = await refreshRequest().then((res) => res.json());
         if (dataToken.success) {
           const authToken = dataToken.accessToken.split("Bearer ")[1];
           const refreshToken = dataToken.refreshToken;
@@ -118,10 +116,13 @@ export function useProvideAuth() {
     }
   };
 
+  const access = getCookie("accessToken");
+
   useEffect(() => {
+    console.log("gfgfg");
     checkToken();
     checkTokenRefresh();
-  }, []);
+  }, [access]);
 
   return {
     user,
