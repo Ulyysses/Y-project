@@ -116,13 +116,12 @@ export function useProvideAuth() {
     }
   };
 
-  const access = getCookie("accessToken");
+  const accessToken = getCookie("accessToken");
 
   useEffect(() => {
-    console.log("gfgfg");
     checkToken();
     checkTokenRefresh();
-  }, [access]);
+  }, [accessToken]);
 
   return {
     user,
