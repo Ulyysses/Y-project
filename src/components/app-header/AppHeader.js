@@ -18,7 +18,7 @@ const AppHeader = () => {
             <NavLink
               to="/"
               className={({ isActive }) => {
-                return classNames(css.nav_link, isActive ? css.active : "");
+                return classNames(css.nav_link, isActive && css.active);
               }}
             >
               <BurgerIcon type="secondary" />
@@ -36,7 +36,7 @@ const AppHeader = () => {
             <NavLink
               to="/feed"
               className={({ isActive }) => {
-                return classNames(css.nav_link, isActive ? css.active : "");
+                return classNames(css.nav_link, isActive && css.active);
               }}
             >
               <ListIcon type="secondary" />
@@ -59,7 +59,7 @@ const AppHeader = () => {
             <NavLink
               to="/profile"
               className={({ isActive }) => {
-                return classNames(css.nav_link, isActive ? css.active : "");
+                return classNames(css.nav_link, isActive && css.active);
               }}
             >
               <ProfileIcon type="secondary" />

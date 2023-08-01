@@ -11,8 +11,8 @@ const ProfileNav = () => {
   const dispatch = useDispatch();
   const { signOut } = useAuth();
 
-  const logout = (e) => {
-    e.preventDefault();
+  const logout = (event) => {
+    event.preventDefault();
     signOut();
     dispatch(removeAll());
   };
@@ -27,7 +27,7 @@ const ProfileNav = () => {
             return classNames(
               "text text_type_main-medium",
               css.profile_link,
-              isActive ? css.active : ""
+              isActive && css.active
             );
           }}
         >
@@ -41,7 +41,7 @@ const ProfileNav = () => {
             return classNames(
               "text text_type_main-medium",
               css.profile_link,
-              isActive ? css.active : ""
+              isActive && css.active
             );
           }}
         >
