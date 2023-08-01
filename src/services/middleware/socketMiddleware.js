@@ -6,14 +6,14 @@ export const socketMiddleware = (wsUrl, wsActions) => {
       const { dispatch } = store;
       const { type, payload } = action;
 
-      const [
+      const {
         wsConnectionSuccess,
         wsConnectionError,
         wsConnectionClosed,
         wsGetMessage,
         wsConnectionStart,
         wsSendMessage,
-      ] = wsActions;
+      } = wsActions;
 
       if (!socket && type === wsConnectionStart.type) {
         socket = new WebSocket(wsUrl);
@@ -21,12 +21,11 @@ export const socketMiddleware = (wsUrl, wsActions) => {
 
       if (socket) {
         socket.onopen = (event) => {
-          console.log("open");
           dispatch(wsConnectionSuccess(event));
         };
 
         socket.onerror = (event) => {
-          console.log("error");
+          console.error(event);
           dispatch(wsConnectionError(event));
         };
 
@@ -34,13 +33,10 @@ export const socketMiddleware = (wsUrl, wsActions) => {
           const { data } = event;
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
-          console.log("message");
           dispatch(wsGetMessage(restParsedData));
         };
 
         socket.onclose = (event) => {
-          console.log("close");
-          console.log(event);
           dispatch(wsConnectionClosed(event));
         };
 

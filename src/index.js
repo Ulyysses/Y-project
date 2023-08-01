@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
@@ -27,28 +27,28 @@ import { apiOrders, apiOrdersAll } from "./utils/api";
 import "./index.scss";
 import "./layout.scss";
 
-const wsOrdersActions = [
-  wsConnectionSuccess,
-  wsConnectionError,
-  wsConnectionClosed,
-  wsGetOrders,
-  wsConnectionStart,
-];
+const OrdersActions = {
+  wsConnectionSuccess: wsConnectionSuccess,
+  wsConnectionError: wsConnectionError,
+  wsConnectionClosed: wsConnectionClosed,
+  wsGetMessage: wsGetOrders,
+  wsConnectionStart: wsConnectionStart,
+};
 
-const allOrdersAllActions = [
-  allConnectionSuccess,
-  allConnectionError,
-  allConnectionClosed,
-  allGetOrders,
-  allConnectionStart,
-];
+const allOrdersActions = {
+  wsConnectionSuccess: allConnectionSuccess,
+  wsConnectionError: allConnectionError,
+  wsConnectionClosed: allConnectionClosed,
+  wsGetMessage: allGetOrders,
+  wsConnectionStart: allConnectionStart,
+};
 
 const store = configureStore({
   ...rootReducer,
   middleware: [
     thunk,
-    socketMiddleware(apiOrders, wsOrdersActions),
-    socketMiddleware(apiOrdersAll, allOrdersAllActions),
+    socketMiddleware(apiOrders, OrdersActions),
+    socketMiddleware(apiOrdersAll, allOrdersActions),
   ],
 });
 
