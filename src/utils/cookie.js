@@ -1,5 +1,5 @@
 export function setCookie(name, value, props) {
-  props = { ...props, path: "/" };
+  props = { path: "/", ...props };
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
     const d = new Date();
