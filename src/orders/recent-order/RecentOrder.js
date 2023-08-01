@@ -20,11 +20,7 @@ const RecentOrder = () => {
     return order._id === id;
   });
 
-  return (
-    <div>
-      <OrderFull orderFull={order} />
-    </div>
-  );
+  return <OrderFull orderFull={order} />;
 };
 
 export default RecentOrder;

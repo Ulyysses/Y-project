@@ -33,6 +33,7 @@
 .ingredient_container {
   display: flex;
   align-items: center;
+  padding-right: 10px;
 }
 
 .ingredient_photo_container {
@@ -50,7 +51,6 @@
 
 .ingredient_name {
   display: block;
-  width: 450px;
 }
 
 .ingredient_photo {
@@ -60,6 +60,7 @@
 .ingredient_price {
   display: flex;
   gap: 5px;
+  margin-left: auto;
 }
 
 .order_comp {

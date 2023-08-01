@@ -86,7 +86,7 @@ const OrderFull = ({ orderFull }) => {
               <div className={css.ingredient_price}>
                 <p
                   className={classNames(
-                    "text text_type_main-default",
+                    "text text_type_digits-default",
                     css.ingredient_price_numbers
                   )}
                 >
