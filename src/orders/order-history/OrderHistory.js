@@ -57,27 +57,28 @@ const OrderHistory = () => {
             .reverse()
             .map((order) => {
               return (
-                <li
-                  key={order._id}
-                  className={css.order_item}
-                  onClick={() => {
-                    setModalData(order);
-                    handleClick(order._id);
-                  }}
-                >
-                  <Order
-                    number={order.number}
-                    date={order.createdAt}
-                    ingredients={order.ingredients}
-                    name={order.name}
-                    status={
-                      order.status === "done"
-                        ? "Выполнен"
-                        : order.status === "created"
-                        ? "Готовится"
-                        : "Отменен"
-                    }
-                  />
+                <li key={order._id}>
+                  <button
+                    className={css.order_item}
+                    onClick={() => {
+                      setModalData(order);
+                      handleClick(order._id);
+                    }}
+                  >
+                    <Order
+                      number={order.number}
+                      date={order.createdAt}
+                      ingredients={order.ingredients}
+                      name={order.name}
+                      status={
+                        order.status === "done"
+                          ? "Выполнен"
+                          : order.status === "created"
+                          ? "Готовится"
+                          : "Отменен"
+                      }
+                    />
+                  </button>
                 </li>
               );
             })}

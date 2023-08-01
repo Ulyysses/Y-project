@@ -29,20 +29,21 @@ const OrderList = () => {
         {orders &&
           orders.map((order) => {
             return (
-              <li
-                key={order._id}
-                className={css.item_wrapper}
-                onClick={() => {
-                  setModalData(order);
-                  handleClick(order._id);
-                }}
-              >
-                <Order
-                  number={order.number}
-                  date={order.createdAt}
-                  ingredients={order.ingredients.filter(Boolean)}
-                  name={order.name}
-                />
+              <li key={order._id}>
+                <button
+                  className={css.item_wrapper}
+                  onClick={() => {
+                    setModalData(order);
+                    handleClick(order._id);
+                  }}
+                >
+                  <Order
+                    number={order.number}
+                    date={order.createdAt}
+                    ingredients={order.ingredients.filter(Boolean)}
+                    name={order.name}
+                  />
+                </button>
               </li>
             );
           })}
