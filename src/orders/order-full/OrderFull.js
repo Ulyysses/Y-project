@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { countPrice, formateDate } from "../../utils/helpers";
+import { defineStatus } from "../../utils/helpers";
 
 import css from "./index.module.scss";
 
@@ -50,11 +51,7 @@ const OrderFull = ({ orderFull }) => {
       <p
         className={classNames("text text_type_main-default", css.order_status)}
       >
-        {orderFull.status === "done"
-          ? "Выполнен"
-          : orderFull.status === "created"
-          ? "Готовится"
-          : "Отменен"}
+        {defineStatus(orderFull.status)}
       </p>
       <p className={classNames("text text_type_main-medium", css.order_comp)}>
         Состав:

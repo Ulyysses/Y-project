@@ -32,3 +32,13 @@ export const formateDate = (date) => {
   });
   return `${setDay(newDate)}, ${formattedeDate}`;
 };
+
+export const defineStatus = (status) => {
+  if (status === "done") {
+    return "Выполнен";
+  } else if (status === "created") {
+    return "Готовится";
+  } else {
+    return "Отменен";
+  }
+};

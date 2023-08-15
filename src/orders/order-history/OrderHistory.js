@@ -7,9 +7,10 @@ import OrderFull from "../order-full/OrderFull";
 import Modal from "../../components/modal/Modal";
 import ProfileNav from "../../pages/profile-nav/ProfileNav";
 import { wsConnectionStart } from "../../services/orders";
+import Loading from "../../components/loading";
+import { defineStatus } from "../../utils/helpers";
 
 import css from "./index.module.scss";
-import Loading from "../../components/loading";
 
 const OrderHistory = () => {
   const dispatch = useDispatch();
@@ -70,13 +71,7 @@ const OrderHistory = () => {
                       date={order.createdAt}
                       ingredients={order.ingredients}
                       name={order.name}
-                      status={
-                        order.status === "done"
-                          ? "Выполнен"
-                          : order.status === "created"
-                          ? "Готовится"
-                          : "Отменен"
-                      }
+                      status={defineStatus(order.status)}
                     />
                   </button>
                 </li>
