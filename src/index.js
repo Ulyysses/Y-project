@@ -27,7 +27,7 @@ import { apiOrders, apiOrdersAll } from "./utils/api";
 import "./index.scss";
 import "./layout.scss";
 
-const OrdersActions = {
+const ordersActions = {
   wsConnectionSuccess: wsConnectionSuccess,
   wsConnectionError: wsConnectionError,
   wsConnectionClosed: wsConnectionClosed,
@@ -47,7 +47,7 @@ const store = configureStore({
   ...rootReducer,
   middleware: [
     thunk,
-    socketMiddleware(apiOrders, OrdersActions),
+    socketMiddleware(apiOrders, ordersActions),
     socketMiddleware(apiOrdersAll, allOrdersActions),
   ],
 });
