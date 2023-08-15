@@ -1,0 +1,39 @@
+.readiness_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 20px);
+}
+
+.status_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status_ready {
+  width: 280px;
+}
+
+.status_cook {
+  width: 280px;
+}
+
+.status_text {
+  padding-bottom: 24px;
+}
+
+.status_numbers {
+  display: flex;
+  gap: 8px;
+  flex-flow: column wrap;
+  height: 200px;
+}
+
+.number_done {
+  text-shadow: 0 0 16px var(--shadow-first), 0 0 8px var(--shadow-first),
+    0 4px 32px var(--shadow-second);
+}
+
+.number_ready {
+  color: var(--colors-interface-success);
+}

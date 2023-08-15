@@ -120,20 +120,22 @@ const BurgerIngredients = ({ isLoading }) => {
                 {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "bun") {
                     return (
-                      <li
-                        key={ingredient._id}
-                        onClick={() => {
-                          setModalData(ingredient);
-                          handleClick(ingredient._id);
-                        }}
-                      >
-                        <BurgerIngredient
-                          name={ingredient.name}
-                          image={ingredient.image}
-                          price={ingredient.price}
-                          id={ingredient._id}
-                          count={duplicates[ingredient._id]}
-                        />
+                      <li key={ingredient._id}>
+                        <button
+                          onClick={() => {
+                            setModalData(ingredient);
+                            handleClick(ingredient._id);
+                          }}
+                          className={css.list_button}
+                        >
+                          <BurgerIngredient
+                            name={ingredient.name}
+                            image={ingredient.image}
+                            price={ingredient.price}
+                            id={ingredient._id}
+                            count={duplicates[ingredient._id]}
+                          />
+                        </button>
                       </li>
                     );
                   }
@@ -155,20 +157,22 @@ const BurgerIngredients = ({ isLoading }) => {
                 {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "sauce") {
                     return (
-                      <li
-                        key={ingredient._id}
-                        onClick={() => {
-                          setModalData(ingredient);
-                          handleClick(ingredient._id);
-                        }}
-                      >
-                        <BurgerIngredient
-                          name={ingredient.name}
-                          image={ingredient.image}
-                          price={ingredient.price}
-                          id={ingredient._id}
-                          count={duplicates[ingredient._id]}
-                        />
+                      <li key={ingredient._id}>
+                        <button
+                          onClick={() => {
+                            setModalData(ingredient);
+                            handleClick(ingredient._id);
+                          }}
+                          className={css.list_button}
+                        >
+                          <BurgerIngredient
+                            name={ingredient.name}
+                            image={ingredient.image}
+                            price={ingredient.price}
+                            id={ingredient._id}
+                            count={duplicates[ingredient._id]}
+                          />
+                        </button>
                       </li>
                     );
                   }
@@ -190,20 +194,22 @@ const BurgerIngredients = ({ isLoading }) => {
                 {dataIngredients.map((ingredient) => {
                   if (ingredient.type === "main") {
                     return (
-                      <li
-                        key={ingredient._id}
-                        onClick={() => {
-                          setModalData(ingredient);
-                          handleClick(ingredient._id);
-                        }}
-                      >
-                        <BurgerIngredient
-                          name={ingredient.name}
-                          image={ingredient.image}
-                          price={ingredient.price}
-                          id={ingredient._id}
-                          count={duplicates[ingredient._id]}
-                        />
+                      <li key={ingredient._id}>
+                        <button
+                          onClick={() => {
+                            setModalData(ingredient);
+                            handleClick(ingredient._id);
+                          }}
+                          className={css.list_button}
+                        >
+                          <BurgerIngredient
+                            name={ingredient.name}
+                            image={ingredient.image}
+                            price={ingredient.price}
+                            id={ingredient._id}
+                            count={duplicates[ingredient._id]}
+                          />
+                        </button>
                       </li>
                     );
                   }

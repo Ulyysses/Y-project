@@ -3,13 +3,14 @@ import React from "react";
 import classNames from "classnames";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import css from "../index.module.scss";
 import InputPassword from "../input-password/InputPassword";
 import InputName from "../input-name/InputName";
 import InputEmail from "../input-email/InputEmail";
 import { useAuth } from "../auth";
 import Loading from "../../components/loading/Loading";
-import { register } from "../api";
+import { register } from "../../utils/api";
+
+import css from "../index.module.scss";
 
 const Register = () => {
   const navigate = useNavigate();

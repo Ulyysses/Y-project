@@ -16,7 +16,11 @@ import { ProvideAuth } from "../../pages/auth";
 import { ProtectedRouteElement } from "../../pages/ProtectedRouteElement";
 import IngredientPage from "../../pages/ingredient-page/IngredientPage";
 import NotFound404 from "../../pages/404/NotFound404";
-import { ingredientsList } from "../../pages/api";
+import { ingredientsList } from "../../utils/api";
+import FeedPage from "../../orders/feed-page/FeedPage";
+import OrderPage from "../../orders/order-page/OrderPage";
+import OrderHistory from "../../orders/order-history/OrderHistory";
+import RecentOrder from "../../orders/recent-order/RecentOrder";
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
@@ -58,6 +62,14 @@ const App = () => {
                   path="/profile"
                   element={<ProtectedRouteElement element={<Profile />} />}
                 />
+                <Route
+                  path="/profile/orders"
+                  element={<ProtectedRouteElement element={<OrderHistory />} />}
+                />
+                <Route
+                  path="/profile/orders/:id"
+                  element={<ProtectedRouteElement element={<RecentOrder />} />}
+                />
                 <Route path="/ingredients/:id" element={<IngredientPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -65,6 +77,8 @@ const App = () => {
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="*" element={<NotFound404 />} />
                 <Route path="/" element={<MainPage />} />
+                <Route path="/feed" element={<FeedPage />} />
+                <Route path="/feed/:id" element={<OrderPage />} />
               </Routes>
             </ProvideAuth>
           </main>

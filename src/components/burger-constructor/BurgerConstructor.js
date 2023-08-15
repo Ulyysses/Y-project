@@ -15,9 +15,10 @@ import Modal from "../modal";
 import BurgerElement from "../burger-element/BurgerElement";
 import { addIngredient, removeAll } from "../../services/ingredients";
 import { useAuth } from "../../pages/auth";
+import { order } from "../../utils/api";
+import { countPrice } from "../../utils/helpers";
 
 import css from "./index.module.scss";
-import { order } from "../../pages/api";
 
 const BurgerConstructor = () => {
   const { isAuthenticated } = useAuth();
@@ -38,7 +39,7 @@ const BurgerConstructor = () => {
   });
 
   const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const cartIngredients = useSelector(
     (state) => state.ingredients.cartIngredients
@@ -48,7 +49,7 @@ const BurgerConstructor = () => {
 
   const modalOrderNumber = useSelector((state) => state.modal.modalOrderNumber);
 
-  const modalActive = Boolean(modalOrderNumber);
+  const modalActive = Boolean(modalOrderNumber || isLoading);
 
   const onClose = () => {
     dispatch(clearModal());
@@ -64,14 +65,6 @@ const BurgerConstructor = () => {
     }
   };
 
-  const countPrice = (cartItems) => {
-    return cartItems.reduce(
-      (acc, current) =>
-        (acc += current.type === "bun" ? current.price * 2 : current.price),
-      0
-    );
-  };
-
   const isSubmitDisabled = useMemo(
     () =>
       !(
@@ -85,6 +78,7 @@ const BurgerConstructor = () => {
     () => !(cartIngredients.length >= 1),
     [cartIngredients]
   );
+
   const makeOrder = async () => {
     const ingredientsId = cartIngredients.map((element) => element._id);
     setHasError(false);

@@ -1,0 +1,18 @@
+.profile_nav {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 80px;
+}
+
+.profile_link {
+  color: var(--text-inactive-color);
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+.active {
+  color: var(--white);
+}

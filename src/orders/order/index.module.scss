@@ -1,0 +1,45 @@
+.upper_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+
+.lower_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.icons_wrapper {
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+.status {
+  padding-top: 8px;
+  color: var(--colors-interface-success);
+}
+
+.icon {
+  width: 65px;
+  height: 65px;
+  background-color: var(--background-alt);
+  background-image: url("../../images/ingredient_background.svg");
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: -15px;
+}
+
+.img {
+  text-align: center;
+}
+
+.price_wrapper {
+  display: flex;
+  gap: 10px;
+}

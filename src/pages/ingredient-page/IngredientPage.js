@@ -1,7 +1,9 @@
-import IngredientDetails from "../../components/ingredient-details/IngredientDetails";
-import css from "./index.module.scss";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+import IngredientDetails from "../../components/ingredient-details/IngredientDetails";
+
+import css from "./index.module.scss";
 
 const IngredientPage = () => {
   const { id } = useParams();

@@ -1,21 +1,19 @@
 import React, { useRef } from "react";
-import { NavLink } from "react-router-dom";
 import classNames from "classnames";
-import { useDispatch } from "react-redux";
 import {
   Input,
   EmailInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import css from "./index.module.scss";
 import { useAuth } from "../auth";
-import { refreshUserRequest } from "../api";
-import { removeAll } from "../../services/ingredients";
+import { refreshUserRequest } from "../../utils/api";
+import ProfileNav from "../profile-nav/ProfileNav";
+
+import css from "./index.module.scss";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   const [value, setValue] = React.useState({
     name: user.name,
@@ -27,12 +25,6 @@ const Profile = () => {
       ...value,
       [event.target.name]: event.target.value,
     }));
-  };
-
-  const logout = (e) => {
-    e.preventDefault();
-    signOut();
-    dispatch(removeAll());
   };
 
   const changeInfo = async () => {
@@ -56,6 +48,8 @@ const Profile = () => {
 
   const [disabled, setDisabled] = React.useState(true);
 
+  const isChanged = value.name !== user.name || value.email !== user.email;
+
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
     setDisabled(false);
@@ -68,58 +62,14 @@ const Profile = () => {
   return (
     <div className={css.profile}>
       <div className={css.profile_nav}>
-        <ul className={css.profile_list}>
-          <li>
-            <NavLink
-              to="/profile"
-              className={({ isActive }) => {
-                return classNames(
-                  "text text_type_main-medium",
-                  css.profile_link,
-                  isActive ? css.active : ""
-                );
-              }}
-            >
-              Профиль
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => {
-                return classNames(
-                  "text text_type_main-medium",
-                  css.profile_link,
-                  isActive ? css.active : ""
-                );
-              }}
-            >
-              История заказов
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => {
-                return classNames(
-                  "text text_type_main-medium",
-                  css.profile_link,
-                  isActive ? css.active : ""
-                );
-              }}
-              onClick={logout}
-            >
-              Выход
-            </NavLink>
-          </li>
-        </ul>
+        <ProfileNav />
         <p
           className={classNames(
             "text text_type_main-default",
             css.profile_text
           )}
         >
-          В этом разделе вы можетеизменить свои персональные данные
+          В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
       <div className={css.profile_inputs}>
@@ -150,6 +100,7 @@ const Profile = () => {
             type="secondary"
             size="medium"
             onClick={resetInfo}
+            disabled={!isChanged}
           >
             Отмена
           </Button>
@@ -158,6 +109,7 @@ const Profile = () => {
             type="primary"
             size="medium"
             onClick={changeInfo}
+            disabled={!isChanged}
           >
             Сохранить
           </Button>

@@ -17,7 +17,6 @@
 .small_container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   @media (min-width: variables.$tablet-width) {
     height: calc(100vh - 88px - 100px - 40px);
@@ -25,6 +24,6 @@
 
   @media (min-width: variables.$desktop-width) {
     flex-direction: row;
-    gap: 40px;
+    gap: 60px;
   }
 }

@@ -1,6 +1,5 @@
-import React from "react";
 import classNames from "classnames";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   Logo,
   ListIcon,
@@ -11,12 +10,6 @@ import {
 import css from "./index.module.scss";
 
 const AppHeader = () => {
-  const location = useLocation();
-
-  const isActive = () => {
-    return location.pathname === "/profile" || location.pathname === "/login";
-  };
-
   return (
     <header className={css.main_header}>
       <nav className={classNames("container", css.header_nav)}>
@@ -25,7 +18,7 @@ const AppHeader = () => {
             <NavLink
               to="/"
               className={({ isActive }) => {
-                return classNames(css.nav_link, isActive ? css.active : "");
+                return classNames(css.nav_link, isActive && css.active);
               }}
             >
               <BurgerIcon type="secondary" />
@@ -41,9 +34,9 @@ const AppHeader = () => {
           </li>
           <li className={css.list_item}>
             <NavLink
-              to="/listOrder"
+              to="/feed"
               className={({ isActive }) => {
-                return classNames(css.nav_link, isActive ? css.active : "");
+                return classNames(css.nav_link, isActive && css.active);
               }}
             >
               <ListIcon type="secondary" />
@@ -65,7 +58,9 @@ const AppHeader = () => {
           <li className={css.list_item}>
             <NavLink
               to="/profile"
-              className={classNames(css.nav_link, isActive() ? css.active : "")}
+              className={({ isActive }) => {
+                return classNames(css.nav_link, isActive && css.active);
+              }}
             >
               <ProfileIcon type="secondary" />
               <span
