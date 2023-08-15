@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import {
   loginRequest,
@@ -25,6 +27,12 @@ export function useProvideAuth() {
   const [isActivePasswordReset, setIsActivePasswordReset] =
     React.useState(false);
   const [hasError, setHasError] = React.useState();
+
+  const refreshToken = getCookie("refreshToken");
+
+  const [accessToken, setAccessToken] = useState(
+    getCookie("accessToken") || "null"
+  );
 
   const signIn = async (form) => {
     setIsLoading(true);
@@ -66,13 +74,13 @@ export function useProvideAuth() {
   };
 
   const checkToken = async () => {
-    if (getCookie("refreshToken") === "null") {
+    if (refreshToken === "null") {
       return null;
     } else {
       if (
         !isAuthenticated &&
-        getCookie("accessToken") !== "null" &&
-        getCookie("accessToken") !== undefined
+        accessToken !== "null" &&
+        accessToken !== undefined
       ) {
         setIsLoading(true);
         const data = await getUserRequest().then((res) => {
@@ -88,13 +96,10 @@ export function useProvideAuth() {
   };
 
   const checkTokenRefresh = async () => {
-    if (getCookie("refreshToken") === "null") {
+    if (refreshToken === "null") {
       setIsLoading(false);
     } else {
-      if (
-        getCookie("accessToken") === "null" ||
-        getCookie("accessToken") === undefined
-      ) {
+      if (accessToken === "null" || accessToken === undefined) {
         setIsLoading(true);
         const dataToken = await refreshRequest().then((res) => res.json());
         if (dataToken.success) {
@@ -116,7 +121,21 @@ export function useProvideAuth() {
     }
   };
 
-  const accessToken = getCookie("accessToken");
+  useEffect(() => {
+    const OnCookieEvent = async () => {
+      const value = getCookie("accessToken") || "null";
+
+      if (accessToken !== value) {
+        setAccessToken(value);
+      }
+    };
+
+    cookieStore.addEventListener("change", OnCookieEvent);
+
+    return () => {
+      cookieStore.removeEventListener("change", OnCookieEvent);
+    };
+  }, [accessToken]);
 
   useEffect(() => {
     checkToken();
