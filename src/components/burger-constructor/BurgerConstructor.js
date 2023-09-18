@@ -109,6 +109,7 @@ const BurgerConstructor = () => {
     <section
       className={classNames(css.constructor, isHover && css.drop_hover)}
       ref={dropTarget}
+      data-test-id="drop"
     >
       <div className={css.list}>
         <div className={css.list_start_end}>
