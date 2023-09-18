@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 
 import Order from "../order/Order";
@@ -12,10 +12,10 @@ const OrderList = () => {
 
   const [modalData, setModalData] = useState(null);
 
-  const onClose = () => {
+  const onClose = useCallback(() => {
     setModalData(null);
     window.history.replaceState(null, "", "/feed");
-  };
+  }, []);
 
   const modalActive = Boolean(modalData);
 

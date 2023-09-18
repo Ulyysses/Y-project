@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,10 +23,10 @@ const OrderHistory = () => {
 
   const [modalData, setModalData] = useState(null);
 
-  const onClose = () => {
+  const onClose = useCallback(() => {
     setModalData(null);
     window.history.replaceState(null, "", "/profile/orders");
-  };
+  }, []);
 
   const modalActive = Boolean(modalData);
 
