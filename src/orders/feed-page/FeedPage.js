@@ -10,7 +10,7 @@ const FeedPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: allConnectionStart.type });
+    dispatch(allConnectionStart());
   }, []);
 
   const orders = useSelector((state) => state.allOrders.orders);

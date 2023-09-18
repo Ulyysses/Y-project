@@ -11,7 +11,7 @@ const RecentOrder = () => {
   const orders = useSelector((state) => state.orders.orders);
 
   useEffect(() => {
-    dispatch({ type: wsConnectionStart.type });
+    dispatch(wsConnectionStart());
   }, []);
 
   const { id } = useParams();

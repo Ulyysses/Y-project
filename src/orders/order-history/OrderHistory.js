@@ -18,7 +18,7 @@ const OrderHistory = () => {
   const orders = useSelector((state) => state.orders.orders);
 
   useEffect(() => {
-    dispatch({ type: wsConnectionStart.type });
+    dispatch(wsConnectionStart());
   }, []);
 
   const [modalData, setModalData] = useState(null);

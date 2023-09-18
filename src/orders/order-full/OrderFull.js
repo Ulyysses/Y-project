@@ -69,7 +69,7 @@ const OrderFull = ({ orderFull }) => {
                   src={normalizedOrder[ingredientId].image}
                   width="112"
                   height="56"
-                  alt={normalizedOrder[ingredientId].image}
+                  alt={normalizedOrder[ingredientId].name}
                 ></img>
               </div>
               <p
