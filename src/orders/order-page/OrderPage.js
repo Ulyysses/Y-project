@@ -11,7 +11,7 @@ const OrderPage = () => {
   const orders = useSelector((state) => state.allOrders.orders);
 
   useEffect(() => {
-    dispatch({ type: allConnectionStart.type });
+    dispatch(allConnectionStart());
   }, []);
 
   const { id } = useParams();

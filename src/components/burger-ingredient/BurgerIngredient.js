@@ -15,7 +15,7 @@ const BurgerIngredient = ({ name, price, image, id, count }) => {
   });
 
   return (
-    <div className={css.item} ref={dragRef}>
+    <div className={css.item} ref={dragRef} data-test-id="drag">
       <img
         src={image}
         className={css.img}
