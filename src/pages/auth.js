@@ -74,7 +74,7 @@ export function useProvideAuth() {
   };
 
   const checkToken = async () => {
-    if (refreshToken === "null") {
+    if (refreshToken === "null" || refreshToken === undefined) {
       return null;
     } else {
       if (
@@ -96,7 +96,7 @@ export function useProvideAuth() {
   };
 
   const checkTokenRefresh = async () => {
-    if (refreshToken === "null") {
+    if (refreshToken === "null" || refreshToken === undefined) {
       setIsLoading(false);
     } else {
       if (accessToken === "null" || accessToken === undefined) {
