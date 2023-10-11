@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, FocusEvent } from "react";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface IInputEmailProps {
@@ -18,9 +18,7 @@ const InputEmail = ({ value, changeValue, placeholder }: IInputEmailProps) => {
     setEmailHasError(!emailValidity);
   };
 
-  const onBlur = (
-    event?: React.FocusEvent<HTMLInputElement, Element> | undefined
-  ): void => {
+  const onBlur = (event?: FocusEvent<HTMLInputElement, Element>): void => {
     if (event?.currentTarget === event?.target) {
       validateEmail(value.email);
     }

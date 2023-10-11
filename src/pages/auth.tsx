@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState, ReactNode } from "react";
+import React, {
+  useEffect,
+  useState,
+  ReactNode,
+  createContext,
+  useContext,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -34,7 +40,7 @@ interface IUser {
   name: string;
 }
 
-const AuthContext = React.createContext<IContext>({
+const AuthContext = createContext<IContext>({
   user: null,
   isAuthenticated: false,
   isLoading: false,
@@ -56,12 +62,11 @@ export function ProvideAuth({ children }: IProvideAuth) {
 
 export function useProvideAuth() {
   const navigate = useNavigate();
-  const [user, setUser] = React.useState<IUser | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isActivePasswordReset, setIsActivePasswordReset] =
-    React.useState(false);
-  const [hasError, setHasError] = React.useState("");
+  const [user, setUser] = useState<IUser | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isActivePasswordReset, setIsActivePasswordReset] = useState(false);
+  const [hasError, setHasError] = useState("");
 
   const refreshToken = getCookie("refreshToken");
 
@@ -195,5 +200,5 @@ export function useProvideAuth() {
 }
 
 export function useAuth() {
-  return React.useContext(AuthContext);
+  return useContext(AuthContext);
 }

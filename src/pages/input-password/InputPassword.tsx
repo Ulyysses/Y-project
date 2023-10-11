@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useRef } from "react";
+import React, { ChangeEvent, useState, useRef, FocusEvent } from "react";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface IInputPasswordProps {
@@ -40,9 +40,7 @@ const InputPassword = ({
     setPasswordHasError(!passwordValidity);
   };
 
-  const onBlur = (
-    event?: React.FocusEvent<HTMLInputElement, Element> | undefined
-  ): void => {
+  const onBlur = (event?: FocusEvent<HTMLInputElement, Element>): void => {
     if (event?.currentTarget === event?.target) {
       validateName(value.password);
     }

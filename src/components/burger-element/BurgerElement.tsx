@@ -21,7 +21,7 @@ interface IBurgerElementProps {
   };
   index: number;
   lock?: boolean;
-  type?: "top" | "bottom" | undefined;
+  type?: "top" | "bottom";
 }
 
 const BurgerElement = ({ element, index, lock, type }: IBurgerElementProps) => {
