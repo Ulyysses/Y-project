@@ -1,11 +1,9 @@
+import { ISignInForm } from "../types";
 import { getCookie } from "./cookie";
 
 const domain = "https://norma.nomoreparties.space";
 
-export const loginRequest = async (form: {
-  email: string;
-  password: string;
-}) => {
+export const loginRequest = async (form: ISignInForm) => {
   const api = `${domain}/api/auth/login`;
   return await fetch(api, {
     method: "POST",

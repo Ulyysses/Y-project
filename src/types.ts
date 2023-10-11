@@ -21,3 +21,8 @@ export interface IOrders {
   updatedAt: Date;
   _id: string;
 }
+
+export interface ISignInForm {
+  email: string;
+  password: string;
+}

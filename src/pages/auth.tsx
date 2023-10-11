@@ -9,6 +9,7 @@ import {
   refreshRequest,
 } from "../utils/api";
 import { getCookie, setCookie } from "../utils/cookie";
+import { ISignInForm } from "../types";
 
 interface IContext {
   user: IUser | null;
@@ -16,7 +17,7 @@ interface IContext {
   isLoading: boolean;
   isActivePasswordReset: boolean;
   hasError: string;
-  signIn: (form: { email: string; password: string }) => Promise<void>;
+  signIn: (form: ISignInForm) => Promise<void>;
   signOut: () => Promise<void>;
   checkToken: () => Promise<void>;
   checkTokenRefresh: () => Promise<void>;
@@ -68,7 +69,7 @@ export function useProvideAuth() {
     getCookie("accessToken") || "null"
   );
 
-  const signIn = async (form: { email: string; password: string }) => {
+  const signIn = async (form: ISignInForm) => {
     setIsLoading(true);
 
     const data = await loginRequest(form).then((res) => {
