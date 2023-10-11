@@ -58,7 +58,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/Y-project">
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <App />
       </BrowserRouter>
     </Provider>
